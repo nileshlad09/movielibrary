@@ -1,38 +1,304 @@
-.App {
-  text-align: center;
+@import url('https://fonts.googleapis.com/css2?family=Fira+Sans&family=Permanent+Marker&family=Poppins:wght@500&family=Roboto:wght@100&family=Shadows+Into+Light&display=swap');
+*{
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: 'Poppins', sans-serif;
+}
+.navbar-brand{
+   font-size: 20px;
+   flex: 158;
+}
+body{
+  background-color: black;
+}
+.main{
+  background-color: black;
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
+/* filter & serachbar area start */
+.main .nav2{
+  padding:15px 55px;
+}
+.main .filter ul{
+  color: black;
+  display: flex;
+  gap: 20px;
+}
+.main .filter ul li{
+  list-style: none;
+  background-color: white;
+  padding: 5px 10px;
+  border-radius: 20px;
+  cursor: pointer;
+  font-weight: 600;
+}
+/* filter & serachbar area End */
+.movieContainer {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+.movieContainer2 h1{
+  color: white;
+  margin-left: 80px;
+  margin-top: 30px;
+  margin-bottom: 0;
+}
+/* .movieContainer{
+  display: flex;
+  flex-wrap: nowrap;
+  overflow-x: scroll;
+  margin:0px 20px 10px;
+} */
+/*===================MoviesItem Area Start================= */
+.movie {
+  width: 220px;
+  margin: 1rem;
+  position: relative;
+  background-color: rgba(35, 35, 35, 0.899);
+  overflow: hidden;
+  border-radius: 10px;
+  transition: all 0.5s ease;
+  flex-shrink: 0;
+}
+.movie img {
+  float: left;
+  width: 220px;
+  padding: 10px;
+  cursor: pointer;
+}
+.movie-info{
+  opacity: 0;
+  transition: opacity .9s;
+}
+.movie .movie_info{
+  position: absolute;
+  bottom: 0;
+  right: 0;
+  left: 0;
+  margin: 10px;
+  background-color: rgba(0, 0, 0, 0.549);
+}
+.movie:hover .movie-info{
+  opacity: 1;
+  transition: opacity .9s;
+  cursor: pointer;
+}
+.movie-name h3 {
+  font-size: 20px;
+  font-family: "Ubuntu", sans-serif;
+  color: white ;
+  flex: 1;
+  letter-spacing: 0px;
+  padding:10px 10px 5px;
+  margin: 0 0.5em 0 0;
+  font-size: 1.75rem;
+}
+.movie-info .releaseDate{
+  display: flex;
+  width: 100%;
+  justify-content: space-between;
+  padding:5px 10px;
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
+.movie-info .releaseDate h4 {
+  font-size: 15px;
+  font-weight: bold;
+  color: rgb(255, 255, 255);
+}
+.releaseDate span{
+  font-size: 15px;
+  font-weight: bold;
+  background-color: black;
+  padding: 3px;
+}
+.movie-info .buttons{
+  position: absolute;
+  top: 10px;
+  left: 10px;
+}
+.movie-info .buttons button{
+  background-color: black;
+  color: white;
+  padding: 10px;
+  margin-right: 5px;
+  border: none;
+}
+.movie-info .buttons .watchlist i{
+  font-size: 1.5rem;
+}  
+.movie-info .buttons .watchlist i:hover{
+  color: rgb(8, 255, 8);
+  cursor: pointer;
+}
+.releaseDate .red{
+  color: red;
+}
+.releaseDate .green{
+  color: rgb(107, 171, 12);
+}
+.releaseDate .orange{
+  color: orange;
+}
+/*===================MoviesItem Area End================= */
+
+/*================DetailOfMovie start================*/
+.overview-title{
+  padding-top: 20px;
+}
+.overview{
+  margin-top: 50px;
+}
+.overview p{
+  font-size: 19px;
+}
+.other p{
+  margin: 0;
+  font-size: 15px;
+}
+/*=========DetailOfMovie end===========*/
+/*==========provider area start====== */
+.provider{
+  margin-top: 20px;
+}
+.provider h3{
+  font-size: 2rem;
+}
+.provider img{
+  width: 60px;
+  box-shadow: 0 0 10px black;
+}
+.provider p{
+  font-weight: 500;
+  font-size: 1.2rem;
+  margin-bottom: 10px;
+}
+.providers{
+  display: flex;
+  flex-direction: column;
+}
+.providers h4{
+  padding-left: 10px;
+}
+.p1{
+  display: flex;
 }
 
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
+.ott{
+  margin: 0px 10px 0 0;
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
+  width: 80px;
+}
+.ott p{
+  text-align: center;
+}
+/*==========provider area End====== */
+.trailer{
+  margin-top: 50px;
+}
+
+/*================login/signup Area Start================ */
+.login_container{
+  margin-top: 1em;
+  width: 400px;
+  background-color: rgb(216, 42, 216);
+  padding: 3rem;
   color: white;
+  font-weight: 500;
 }
+.login_container button{
+  width: 100%;
+  margin-top: 2rem;
+  font-weight: 500;
+  font-size: 1.4rem;
+  cursor: pointer;
+}
+.acc{
+  color: blue;
+text-decoration: none;
+}
+/*================login/signup Area End================ */
 
-.App-link {
-  color: #61dafb;
+/*===============review Area Start================ */
+.review{
+  margin-top: 30px;
 }
+.review textarea{
+  height: 60px;
+}
+.review form{
+  display: flex;
+  flex-direction: column;
+}
+.review form button{
+  width: 100px;
+  margin-top: 5px;
+}
+.reviewCon {
+  color: black;
+}
+.alertC{
+  position: absolute;
+}
+/*===============review Area End================ */
+/* ===============cast of movie Start================= */
+.detailofmovie2{
+ /* background: url(https://image.tmdb.org/t/p/w500/5ZuctJh5uX5L2dz1CjA7WsTJwZk.jpg); */
+ background-repeat: repeat-y;
+ background-size: 100%;
+ color: white;
+}
+.detailofmovie2 .close{
+  margin-top: 20px;
+}
+.detailofmovie{
+  background-color: rgba(0, 0, 0, 0.749);
+  box-shadow: 0 0 10px black;
+  padding: 0 80px;
+}
+.castContainer{
+  margin-top: 20px;
+}
+.castDetail{
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+.castImg{
+  margin: 10px;
+}
+.cast-img{
+  width: 110px;
+}
+.cast-img h6{
+  font-weight: 600;
+}
+.cast-img img{
+  height: 150px;
+}
+/* ===============cast of movie End================= */
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+/* ============similar movie area start============== */
+.similar_movie{
+  display: flex;
+  flex-wrap: nowrap;
+  overflow-x: scroll;
 }
+.similar_movie .card{
+  margin: 10px 20px 10px 0;
+  width: 200px;
+  flex-shrink: 0;
+}
+.similar_movie .card-body p{
+  margin: 0;
+}
+.similar_movie .card-body .release_date{
+  color: gray;
+}
+.similar_movie .card-body .card-text{
+  color:black;
+}
+/* ============similar movie area End============== */
