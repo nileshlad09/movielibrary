@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { useNavigate ,Link} from "react-router-dom";
-
+import img from '../../Img/1.png'
 
 const Login = (props) => {
 
@@ -35,8 +35,9 @@ const Login = (props) => {
 
     return (
     <>
-      <form className="container login_container" onSubmit={handleclick}>
+      
         
+      <form className="container login_container" onSubmit={handleclick}>
         <div className="mb-3 ">
         <h1 className="text-center mb-4">Login</h1>
           <label htmlFor="email" className="form-label">
@@ -74,6 +75,7 @@ const Login = (props) => {
           <Link to="/signup" className="acc px-3">Create Account</Link>
         </p>
       </form>
+      
     </>
   );
 };

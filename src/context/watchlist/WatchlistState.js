@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import WatchlistContext from "./WatchlistContext";
 
 const WatchlistState = (props)=>{
@@ -6,10 +6,10 @@ const WatchlistState = (props)=>{
     const host ="http://localhost:5000"
     const noteInitial = []
     const [watchlist ,setWatchlist]= useState(noteInitial)
-    const [watched ,setWatched]= useState([])
+    const [watchlistS ,setWatchlistS]= useState(noteInitial)
 
-    const getWatchlist= async()=>{
-        const response = await fetch(`${host}/api/watchlist/getwatchlist`, {
+    const getWatchlistM= async()=>{
+        const response = await fetch(`${host}/api/watchlist/getwatchlistM`, {
           method: 'GET', 
           headers: {
             'Content-Type': 'application/json',
@@ -19,15 +19,26 @@ const WatchlistState = (props)=>{
         const json = await response.json()
         setWatchlist(json)
       }
+    const getWatchlistS= async()=>{
+        const response = await fetch(`${host}/api/watchlist/getwatchlistS`, {
+          method: 'GET', 
+          headers: {
+            'Content-Type': 'application/json',
+            'auth-token': localStorage.getItem('token2')
+          }
+        });
+        const json = await response.json()
+        setWatchlistS(json)
+      }
 
-      const addWatchlist= async (movieId,movieName)=>{
+      const addWatchlist= async (movieId,movieName,typeOfContent)=>{
         const response = await fetch(`${host}/api/watchlist/addwatchlist`, {
           method: 'POST', 
           headers: {
             'Content-Type': 'application/json',
             'auth-token':localStorage.getItem('token2')
           },
-          body: JSON.stringify({movieId,movieName})
+          body: JSON.stringify({movieId,movieName,typeOfContent})
         });
         const json = await response.json()
         console.log(json);
@@ -48,49 +59,7 @@ const WatchlistState = (props)=>{
       }
 
 
-    const getWatched= async ()=>{
-        const response = await fetch(`${host}/api/watched/getwatched`, {
-          method: 'GET', 
-          headers: {
-            'Content-Type': 'application/json',
-            'auth-token':localStorage.getItem('token2')
-          }
-        });
-        const json = await response.json()
-        setWatched(json)
-      }
-      
-      
-      
-
-      const addWatched= async (movieId,movieName)=>{
-        const response = await fetch(`${host}/api/watched/addwatched`, {
-          method: 'POST', 
-          headers: {
-            'Content-Type': 'application/json',
-            'auth-token':localStorage.getItem('token2')
-          },
-          body: JSON.stringify({movieId,movieName})
-        });
-        const json = await response.json()
-        console.log(json);
-        
-        setWatched(watched.concat(json))
-      }
-
-      
-      const removeWatched = async (id)=>{
-        const response = await fetch(`${host}/api/watched/deletewatched/${id}`, {
-          method: 'DELETE', 
-          headers: {
-            'Content-Type': 'application/json',
-            'auth-token': localStorage.getItem('token2')
-          }
-        });
-        const json = await response.json()
-        const newmovie = watched.filter((movie)=>{return movie._id!==id});
-        setWatched(newmovie)
-      }
+    
 
       
 
@@ -131,7 +100,7 @@ const WatchlistState = (props)=>{
         
 
     return (
-        <WatchlistContext.Provider value={{watchlist,getWatchlist,addWatchlist,removeWatchlist,watched,getWatched,addWatched,removeWatched,reviewU,addReview,getReview}}>
+        <WatchlistContext.Provider value={{watchlist,watchlistS,getWatchlistM,getWatchlistS,addWatchlist,removeWatchlist,reviewU,addReview,getReview}}>
             {props.children}
         </WatchlistContext.Provider>
     );

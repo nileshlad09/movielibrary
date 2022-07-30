@@ -10,7 +10,6 @@ import {
 } from "react-router-dom";
 import DetailOfMovie from './components/DetailOfMovie/DetailOfMovie';
 import DetailOfShow from './components/DetailOfShow/DetailOfShow';
-import Watched from './components/WatchList/Watched';
 import TvshowContainer from './components/TvShows/TvshowContainer';
 import Login from './components/Login/Login';
 import Signup from './components/Login/Signup';
@@ -42,7 +41,6 @@ function App() {
           <Route path="/"   element={<MovieContainer  showAlert={showAlert} /> } />
           <Route path="/tvshow"   element={<TvshowContainer showAlert={showAlert}/>} />
           <Route path="/watchlist"  element={<WatchList showAlert={showAlert}/>} />
-          <Route path="/watched"  element={<Watched showAlert={showAlert}/>} />
           <Route path="/knowmore" element={<DetailOfMovie/>} />
           <Route path="/knowmoreShow" element={<DetailOfShow/>} />
           <Route path="/login" element={<Login showAlert={showAlert} />} />

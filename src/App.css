@@ -15,6 +15,11 @@ body{
 .main{
   background-color: black;
 }
+::-webkit-scrollbar {
+  height: 4px;              /* height of horizontal scrollbar ← You're missing this */
+  width: 4px;               /* width of vertical scrollbar */
+  border: 1px solid #d5d5d5;
+}
 
 /* filter & serachbar area start  */
 .main .nav2{
@@ -23,6 +28,7 @@ body{
 .main .filter ul{
   color: black;
   display: flex;
+  flex-wrap: wrap;
   gap: 20px;
 }
 .main .filter ul li{
@@ -33,24 +39,44 @@ body{
   cursor: pointer;
   font-weight: 600;
 }
+.movieSearch{
+  justify-content: flex-end;
+}
+.movieSearch input{
+  width: 250px;
+}
 /* filter & serachbar area End */
-.movieContainer {
+.movieContainer{
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
 }
+
 .movieContainer2 h1{
   color: white;
   margin-left: 80px;
   margin-top: 30px;
   margin-bottom: 0;
 }
-/* .movieContainer{
+
+.movieContainer3 .tv,
+.movieContainer3 .movie3{
   display: flex;
-  flex-wrap: nowrap;
-  overflow-x: scroll;
-  margin:0px 20px 10px;
-} */
+  flex-direction: column;
+}
+
+.movieContainer3 .tv .movieItems,
+.movieContainer3 .movie3 .movieItems{
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: flex-start;
+  margin-left: 60px;
+}
+.movieContainer3 .tv .movieItems h4,
+.movieContainer3 .movie3 .movieItems h4{
+  color: white;
+  padding-left: 20px;
+}
 /*===================MoviesItem Area Start================= */
 .movie {
   width: 220px;
@@ -202,9 +228,9 @@ body{
 
 /*================login/signup Area Start================ */
 .login_container{
-  margin-top: 1em;
+  margin-top: 5rem;
   width: 400px;
-  background-color: rgb(216, 42, 216);
+  background-color: orange;
   padding: 3rem;
   color: white;
   font-weight: 500;
@@ -285,7 +311,7 @@ text-decoration: none;
 .similar_movie{
   display: flex;
   flex-wrap: nowrap;
-  overflow-x: scroll;
+  overflow-x: auto;
 }
 .similar_movie .card{
   margin: 10px 20px 10px 0;

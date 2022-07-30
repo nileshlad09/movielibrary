@@ -14,6 +14,10 @@ const WatchlistSchema = new Schema({
         type:String,
         required:true
     },
+    typeOfContent:{
+        type:String,
+        required:true
+    },
     date:{
         type:Date,
         default:Date.now

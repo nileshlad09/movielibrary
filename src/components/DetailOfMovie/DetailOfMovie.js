@@ -20,7 +20,6 @@ const DetailOfMovie = () => {
   const [providers3, setProvider3] = useState([]);
   const [coll, setColl] = useState([]);
   const [background, setBackground] = useState([]);
-
   let Navigate = useNavigate();
   const close = () => {
     Navigate("/");
@@ -208,7 +207,7 @@ const DetailOfMovie = () => {
       
         <div className="row">
           <div className="col-lg-12">
-              <SimilarMovie coll={coll}/>
+              <SimilarMovie coll={coll} />
           </div>
         </div>
 

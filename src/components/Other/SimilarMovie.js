@@ -1,15 +1,13 @@
 import React, { useContext, useEffect, useState } from 'react'
-import { useNavigate } from 'react-router-dom';
-const API_KEY = "api_key=caa67a8e6595552254dc5543bf0720a7";
-const BASE_URL = "https://api.themoviedb.org/3";
+
+
 const IMG_URL = "https://image.tmdb.org/t/p/w500";
 
 
 const SimilarMovie = (props) => {
   const {coll}=props;
-  console.log(coll);
   return (
-    <div style={{display:(coll.length==0)?"none":"block"}}>
+    <div style={{display:(coll.length==0)?"none":"block"}} key={coll.id}>
              <h2>Similar movies</h2>
              <div className='similar_movie'>
          {coll.map((movie)=>{

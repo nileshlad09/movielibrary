@@ -8,16 +8,14 @@ const MovieItem = (props) => {
   let navigate = useNavigate();
   const { movie, showAlert } = props;
   const context = useContext(WatchlistContext);
-  const { addWatchlist, addWatched } = context;
+  const { addWatchlist } = context;
 
   const addWatchList = () => {
-    addWatchlist(movie.id, movie.title);
+    addWatchlist(movie.id, movie.name, 'tv');
     showAlert("success", "movie added to watchlist");
+    console.log(movie.name);
   };
-  // const addWatchEd = () => {
-  //   addWatched(movie.id, movie.title);
-  //   showAlert("success", "movie added to watched");
-  // };
+  
 
   const voteColor = () => {
     if (movie.vote_average >= 8) {

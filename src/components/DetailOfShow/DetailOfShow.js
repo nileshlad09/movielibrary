@@ -13,7 +13,6 @@ const IMG_URL = "https://image.tmdb.org/t/p/w500";
 const DetailOfMovie = () => {
   const id = localStorage.getItem("movieId");
   let API_URL = BASE_URL + `/tv/${id}?` + API_KEY;
-//   https://api.themoviedb.org/3/tv/66732?api_key=caa67a8e6595552254dc5543bf0720a7&language=en-US
   const [movies, setMovie] = useState([]);
   const [genres, setGenres] = useState([]);
   const [trailer, setTrailer] = useState("");
@@ -21,7 +20,6 @@ const DetailOfMovie = () => {
   const [providers2, setProvider2] = useState([]);
   const [providers3, setProvider3] = useState([]);
   const [coll, setColl] = useState([]);
-  const [background, setBackground] = useState([]);
 
   let Navigate = useNavigate();
   const close = () => {
@@ -35,19 +33,13 @@ const DetailOfMovie = () => {
       .then((data) => {
         setColl(data.seasons)
         setMovie(data);
-        if(data.belongs_to_collection!=null){
-        fetch(BASE_URL + `/collection/${data?.belongs_to_collection?.id}?` + API_KEY)
-        .then((res) => res.json())
-        .then((data) => {
-             setBackground(data);
-        });
-      }
         var q = "";
         data.genres.forEach((data) => {
           q += data.name + " , ";
         });
         setGenres(q);
       });      
+
 
     // trailer
     fetch(BASE_URL + `/tv/` + id + `/videos?` + API_KEY)
@@ -60,6 +52,9 @@ const DetailOfMovie = () => {
           }
         });
       });
+      
+
+
 
     //watch provider
     fetch(BASE_URL + `/tv/${id}/watch/providers?` + API_KEY)
@@ -193,7 +188,7 @@ const DetailOfMovie = () => {
             </div>
           </div>
           <div className="col-lg-6">
-            <div className="trailer">
+              <div className="trailer">
               <iframe
                 width="560"
                 height="315"
@@ -203,6 +198,9 @@ const DetailOfMovie = () => {
                 allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
                 allowFullScreen
               ></iframe>
+              <div>
+              <h3>{trailer.name?trailer.name:"No Trailer Found"}</h3>
+              </div>
             </div>
           </div>
         </div>

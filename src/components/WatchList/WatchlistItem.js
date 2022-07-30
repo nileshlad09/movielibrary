@@ -10,7 +10,10 @@ const IMG_URL = "https://image.tmdb.org/t/p/w500";
 const WatchlistItem = (props) => {
   const navigate = useNavigate()
   const {movie,showAlert}=props;
-  let  API_URL = BASE_URL + `/movie/${movie.movieId}?` + API_KEY;
+  
+  
+    let  API_URL = BASE_URL + `/${movie.typeOfContent}/${movie.movieId}?` + API_KEY;
+    
   const [movies, setMovie] = useState([]);
     useEffect(() => {
     fetch(API_URL)
@@ -35,28 +38,46 @@ const WatchlistItem = (props) => {
       return 'red'
     }
   }
+  
   return (
     <>
-      <div className="movie">
-        <img src={movies.poster_path?IMG_URL+movies.poster_path:image}  onClick={()=>{
-              localStorage.setItem('movieId',movie.movieId)
-              navigate('/knowmore')
-            }}/>
+      <div className="movie" key={movie.id}>
+        <img
+          src={movies.poster_path ? IMG_URL + movies.poster_path : image}
+          onClick={() => {
+            localStorage.setItem("movieId", movies.id);
+            if(movie.typeOfContent==='movie'){
+              navigate("/knowmore");
+            }
+            else{
+              navigate("/knowmoreShow");
+            }
+          }}
+        />
         <div className="movie-info">
-          <div className="movie-name">
-            <h3>{movies.original_title}</h3>
-            <span className={voteColor()}>{movies.vote_average}</span>
+          <div className="movie_info">
+            <div className="movie-name">
+              <h3>{movies.title?movies.title:movies.name}</h3>
+            </div>
+            <div className="releaseDate">
+              <h4>{movies.release_date?movies.release_date.slice(0, 4):movies.release_date}</h4>
+              <span className={voteColor()}>{movies.vote_average}</span>
+            </div>
           </div>
-          <h4>{movies.release_date}</h4>
           <div className="buttons">
-            <button className="watchlist" onClick={()=>{
+          <button className="watchlist" onClick={()=>{
               removeWatchlist(movie._id)
-              showAlert("success",`${movies.original_title} movie removed successfully`)}}>
-              Remove from Watchlist
+              showAlert("success",`${movies.original_title?movies.original_title:movies.name} movie removed successfully`)}}>
+              <i class="far fa-bookmark"></i>
             </button>
+
           </div>
         </div>
       </div>
+
+
+
+
     </>
   );
 };

@@ -63,20 +63,6 @@ const Navbar = () => {
                   WatchList
                 </Link>
               </li>
-              <li className="nav-item">
-                <Link
-                  style={{
-                    pointerEvents: localStorage.getItem("token2") ? 0 : "none",
-                  }}
-                  className={`nav-link ${
-                    location.pathname === "/watched" ? "active" : ""
-                  }`}
-                  aria-current="page"
-                  to="/watched"
-                >
-                  Watched
-                </Link>
-              </li>
             </ul>
             {!localStorage.getItem("token2") ? (
               <form className="d-flex">
