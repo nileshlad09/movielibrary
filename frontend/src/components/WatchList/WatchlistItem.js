@@ -12,7 +12,7 @@ const WatchlistItem = (props) => {
   const {movie,showAlert}=props;
   
   
-    let  API_URL = BASE_URL + `/${movie.typeOfContent}/${movie.movieId}?` + API_KEY;
+  let  API_URL = BASE_URL + `/${movie.typeOfContent}/${movie.movieId}?` + API_KEY;
     
   const [movies, setMovie] = useState([]);
     useEffect(() => {
@@ -24,7 +24,7 @@ const WatchlistItem = (props) => {
   },[]);
 
   const context =  useContext(WatchlistContext)
-  const {removeWatchlist} = context;
+  const {removeWatchlist,removeWatchlistS,setMoviedetail} = context;
   
 
   const voteColor=()=>{
@@ -46,6 +46,7 @@ const WatchlistItem = (props) => {
           src={movies.poster_path ? IMG_URL + movies.poster_path : image}
           onClick={() => {
             localStorage.setItem("movieId", movies.id);
+            setMoviedetail(movies.id)
             if(movie.typeOfContent==='movie'){
               navigate("/knowmore");
             }
@@ -66,9 +67,14 @@ const WatchlistItem = (props) => {
           </div>
           <div className="buttons">
           <button className="watchlist" onClick={()=>{
-              removeWatchlist(movie._id)
+              if(movie.typeOfContent==='movie'){
+                removeWatchlist(movie._id)  
+              }
+              else{
+                removeWatchlistS(movie._id)  
+              }
               showAlert("success",`${movies.original_title?movies.original_title:movies.name} movie removed successfully`)}}>
-              <i class="far fa-bookmark"></i>
+              <i className="far fa-bookmark"></i>
             </button>
 
           </div>

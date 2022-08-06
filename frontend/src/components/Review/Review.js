@@ -6,8 +6,9 @@ const Review = () => {
   const {addReview} = context;
     const [note,setNote] = useState("");
     const add =(e)=>{
-        addReview(note);
+      addReview(note);
         setNote("")
+        
     }
     const onChange=(e)=>{
        setNote(e.target.value)

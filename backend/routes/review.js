@@ -10,7 +10,6 @@ router.post('/addreview',fetchuser,async (req,res)=>{
     const movie = req.header('movieId');
     const userId = req.user.id;
     const user =await User.findById(userId).select("-password");
-    console.log(user.name);
     const review2 = await Review.create({
         user: req.user.id,
         name:user.name,

@@ -6,12 +6,15 @@ const WatchList = (props) => {
   const context = useContext(WatchlistContext);
   const { watchlist, watchlistS, getWatchlistM, getWatchlistS } = context;
   const { showAlert } = props;
-  console.log(watchlist.length);
 
   useEffect(() => {
     getWatchlistM();
-    getWatchlistS();
+    console.log(watchlist);
   }, []);
+  useEffect(()=>{
+    getWatchlistS();
+    console.log(watchlistS);
+  },[])
 
   return (
     <div className="movieContainer2">

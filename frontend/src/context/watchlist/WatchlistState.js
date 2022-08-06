@@ -58,19 +58,29 @@ const WatchlistState = (props)=>{
         setWatchlist(newmovie)
       }
 
+      const removeWatchlistS = async (id)=>{
+        const response = await fetch(`${host}/api/watchlist/deletewatchlist/${id}`, {
+          method: 'DELETE', 
+          headers: {
+            'Content-Type': 'application/json',
+            'auth-token':localStorage.getItem('token2')
+          }
+        });
+        const json = await response.json()
+        console.log(id);
+        const newmovie = watchlistS.filter((movie)=>{return movie._id!==id});
+        setWatchlistS(newmovie)
+      }
 
     
-
-      
-
       const [reviewU,setReviewU]=useState([]);
-      
+      const [moviedetail,setMoviedetail]=useState([]);      
       const getReview= async()=>{
         const response = await fetch(`${host}/api/review/getreview`, {
           method: 'GET', 
           headers: {
             'Content-Type': 'application/json',
-            'movieId': localStorage.getItem('movieId')
+            'movieId': localStorage.getItem("movieId")
           }
         });
         const json = await response.json()
@@ -84,7 +94,7 @@ const WatchlistState = (props)=>{
           headers: {
             'Content-Type': 'application/json',
             'auth-token':localStorage.getItem('token2'),
-            'movieId':localStorage.getItem('movieId')
+            'movieId':localStorage.getItem("movieId")
           },
           body: JSON.stringify({review})
         });
@@ -100,7 +110,7 @@ const WatchlistState = (props)=>{
         
 
     return (
-        <WatchlistContext.Provider value={{watchlist,watchlistS,getWatchlistM,getWatchlistS,addWatchlist,removeWatchlist,reviewU,addReview,getReview}}>
+        <WatchlistContext.Provider value={{watchlist,watchlistS,setMoviedetail,getWatchlistM,getWatchlistS,addWatchlist,removeWatchlist,removeWatchlistS,reviewU,addReview,getReview}}>
             {props.children}
         </WatchlistContext.Provider>
     );
