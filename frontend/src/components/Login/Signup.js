@@ -34,7 +34,7 @@ const Signup = (props) => {
     <>
       <form className="container login_container" onSubmit={handleclick}>
       <div className="mb-3 ">
-      <h1 className="text-center mb-4">SignUp</h1>
+      <h1 className="text-center mb-4">Signup</h1>
           <label htmlFor="name" className="form-label">
             Name
           </label>
