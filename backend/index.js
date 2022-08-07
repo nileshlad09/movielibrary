@@ -1,7 +1,8 @@
+require('dotenv').config()
 const express = require('express')
 const cors = require("cors")
 const connectToMongo = require('./db')
-require('dotenv').config()
+
 connectToMongo()
 const app = express();
 app.use(cors())
@@ -15,10 +16,7 @@ app.use('/api/review',require('./routes/review'))
 
 
 if(process.env.NODE_ENV==="production"){
-      app.use(express.static(path.join("../build")))  
-      app.get("*",(req,res)=>{
-        res.sendFile(path.resolve(__dirname,"build","index.html"))
-      })
+      app.use(express.static(path.join("frontend/build")))  
 }
 
 app.listen(PORT,()=>{
