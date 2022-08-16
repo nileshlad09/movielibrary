@@ -18,6 +18,7 @@ import { useState } from 'react';
 import Review from './components/Review/Review';
 import FetchReview from './components/Review/FetchReview';
 
+
 function App() {
   const[alert,setAlert]=useState(null);
   const  showAlert=(type,message)=>{
@@ -47,7 +48,6 @@ function App() {
           <Route path="/signup" element={<Signup showAlert={showAlert}/>} />
           <Route path="/review" element={<Review/>} />
           <Route path="/review2" element={<FetchReview/>} />
-          
         </Routes>
       </Router>
       </WatchlistState>

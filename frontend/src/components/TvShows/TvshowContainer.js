@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from "react";
+import Banar from "../Banar";
 import MovieItem from "../Movie/MovieItem";
 import TvshowItem from "./TvshowItem";
 
@@ -115,6 +116,7 @@ const Upcoming = (props) => {
             </div>
           </div>
         </div>
+        <Banar movie={movie}></Banar>
         <div className="movieContainer2">
           <h1>{currentDisplay}</h1>
           <div className="movieContainer">
