@@ -18,7 +18,7 @@ const WatchlistState = (props)=>{
         });
         const json = await response.json()
         setWatchlist(json)
-      }
+    }
     const getWatchlistS= async()=>{
         const response = await fetch(`${host}/api/watchlist/getwatchlistS`, {
           method: 'GET', 
@@ -74,7 +74,6 @@ const WatchlistState = (props)=>{
 
     
       const [reviewU,setReviewU]=useState([]);
-      const [moviedetail,setMoviedetail]=useState([]);      
       const getReview= async()=>{
         const response = await fetch(`${host}/api/review/getreview`, {
           method: 'GET', 
@@ -110,7 +109,7 @@ const WatchlistState = (props)=>{
         
 
     return (
-        <WatchlistContext.Provider value={{watchlist,watchlistS,setMoviedetail,getWatchlistM,getWatchlistS,addWatchlist,removeWatchlist,removeWatchlistS,reviewU,addReview,getReview}}>
+        <WatchlistContext.Provider value={{watchlist,watchlistS,getWatchlistM,getWatchlistS,addWatchlist,removeWatchlist,removeWatchlistS,reviewU,addReview,getReview}}>
             {props.children}
         </WatchlistContext.Provider>
     );

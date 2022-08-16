@@ -1,10 +1,9 @@
 const mongoose = require('mongoose');
-
+const mongoURI ='mongodb://localhost:27017/movielibrary'
 
 const connectToMongo=()=>{
-    
-    mongoose.connect( process.env.MONGODB_URI || 'mongodb://localhost:27017/movielibrary', {
-    useNewUrlParser: true
-    });
+    mongoose.connect(mongoURI, ()=>{
+        console.log("connected to mongo successfully")
+    })
 }
 module.exports = connectToMongo

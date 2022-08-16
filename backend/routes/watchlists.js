@@ -41,7 +41,8 @@ router.delete('/deletewatchlist/:id',fetchuser,async(req,res)=>{
 // route 3: get All movies of watchlist
 router.get('/getwatchlistM',fetchuser,async(req,res)=>{
   try {
-    const user = await Watchlist.find({user:req.user.id} && {typeOfContent:"movie"});
+    const user = await Watchlist.find({user:req.user.id, typeOfContent:"movie"});
+    console.log("User",req.user.id);
     res.json(user) 
   } catch (error) {
     res.send("Internal server error")
@@ -51,7 +52,7 @@ router.get('/getwatchlistM',fetchuser,async(req,res)=>{
 // route 4: get All tvshows of watchlist
 router.get('/getwatchlistS',fetchuser,async(req,res)=>{
   try {
-    const user = await Watchlist.find({user:req.user.id} && {typeOfContent:"tv"});
+    const user = await Watchlist.find({user:req.user.id, typeOfContent:"tv"});
     res.json(user) 
   } catch (error) {
     res.send("Internal server error")
