@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from "react";
-import Banar from "../Banar";
-import MovieItem from "../Movie/MovieItem";
+import Banar from "../Banar/Banar";
 import TvshowItem from "./TvshowItem";
 
 const API_KEY = "api_key=caa67a8e6595552254dc5543bf0720a7";

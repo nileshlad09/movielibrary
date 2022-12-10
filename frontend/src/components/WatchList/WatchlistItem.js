@@ -10,7 +10,7 @@ const IMG_URL = "https://image.tmdb.org/t/p/w500";
 const WatchlistItem = (props) => {
   const navigate = useNavigate()
   const {movie,showAlert}=props;
-  
+  console.log(movie);
   
   let  API_URL = BASE_URL + `/${movie.typeOfContent}/${movie.movieId}?` + API_KEY;
     
@@ -20,6 +20,7 @@ const WatchlistItem = (props) => {
       .then((res) => res.json())
       .then((data) => {
         setMovie(data);
+        console.log(data);
       });
   },[]);
 

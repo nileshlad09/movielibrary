@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import Banar from "../Banar";
+import Banar from "../Banar/Banar";
 import MovieItem from "./MovieItem";
 
 const API_KEY = "api_key=caa67a8e6595552254dc5543bf0720a7";
@@ -142,6 +142,7 @@ const MovieContainer = (props) => {
             </div>
           </div>
         </div>
+
       <Banar movie={movie}></Banar>
       
       

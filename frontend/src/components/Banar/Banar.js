@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import './banar.css'
 const IMG_URL = "https://image.tmdb.org/t/p/w500";
 const Banar = (props) => {
 
@@ -28,7 +29,7 @@ const Banar = (props) => {
 
       <i className='fas fa-arrow-left left-arrow' onClick={prevSlide} ></i>
       <i className='fas fa-arrow-right right-arrow' onClick={nextSlide} ></i>
-
+      <div className="slider2">
       {movie.map((slide, index) => {
         return (
           <div
@@ -37,13 +38,15 @@ const Banar = (props) => {
           >
             {index === current && (
                 <>
-              <img src={IMG_URL + slide.backdrop_path} alt='travel image' className='image'/>
+              <img src={IMG_URL + slide.backdrop_path} alt='Movie image' className='image'/>
               <h1>{slide.title?slide.title:slide.name}</h1>
               </>
             )}
           </div>
+          
         );
       })}
+      </div>
     </section>
   );
 };

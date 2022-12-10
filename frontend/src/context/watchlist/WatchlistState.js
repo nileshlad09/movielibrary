@@ -28,6 +28,7 @@ const WatchlistState = (props)=>{
           }
         });
         const json = await response.json()
+        console.log(json);
         setWatchlistS(json)
       }
 
