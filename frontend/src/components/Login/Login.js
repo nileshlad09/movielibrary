@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { useNavigate, Link } from "react-router-dom";
 import './login.css'
-import 'react-slideshow-image/dist/styles.css'
 import Signup from "./Signup";
 import LoginMain from "./LoginMain";
 
