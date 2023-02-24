@@ -1,4 +1,5 @@
 import React, { useContext } from "react";
+import './movie.css'
 import image from "../../Img/download.jpg";
 import WatchlistContext from "../../context/watchlist/WatchlistContext";
 import { useNavigate, Link } from "react-router-dom";

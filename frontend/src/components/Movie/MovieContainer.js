@@ -12,7 +12,7 @@ const MovieContainer = (props) => {
   const [tpage, setTotalpage] = useState(1);
   const [current, setCurrent] = useState(1);
   const [movieN, setMovien] = useState("");
-  const [currentDisplay, setCurrentDisplay] = useState("");
+  const [currentDisplay, setCurrentDisplay] = useState("Now Playing");
   let pageNo = 1;
   let API_URL;
 
@@ -109,7 +109,7 @@ const MovieContainer = (props) => {
   return (
     <>
       <div className="main">
-        <div className="nav2 ">
+        <div className="nav2 container">
           <div className="row">
             <div className="col-lg-6 col-md-12 col-md-12">
               <div className="filter">
