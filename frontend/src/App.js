@@ -12,7 +12,6 @@ import DetailOfMovie from './components/DetailOfMovie/DetailOfMovie';
 import DetailOfShow from './components/DetailOfShow/DetailOfShow';
 import TvshowContainer from './components/TvShows/TvshowContainer';
 import Login from './components/Login/Login';
-import Signup from './components/Login/Signup';
 import Alert from './components/Alert';
 import { useState } from 'react';
 import Review from './components/Review/Review';
@@ -45,7 +44,6 @@ function App() {
           <Route path="/knowmore" element={<DetailOfMovie/>} />
           <Route path="/knowmoreShow" element={<DetailOfShow/>} />
           <Route path="/login" element={<Login showAlert={showAlert} />} />
-          <Route path="/signup" element={<Signup showAlert={showAlert}/>} />
           <Route path="/review" element={<Review/>} />
           <Route path="/review2" element={<FetchReview/>} />
         </Routes>

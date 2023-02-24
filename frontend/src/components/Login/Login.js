@@ -1,81 +1,83 @@
-import React, { useState } from "react";
-import { useNavigate ,Link} from "react-router-dom";
-import img from '../../Img/1.png'
+import React, { useEffect, useState } from "react";
+import { useNavigate, Link } from "react-router-dom";
+import './login.css'
+import 'react-slideshow-image/dist/styles.css'
+import Signup from "./Signup";
+import LoginMain from "./LoginMain";
+
 
 const Login = (props) => {
 
-    const [crediantial, setCrediantial] = useState({email:"",password:""});
-    const navigate = useNavigate();
-    const {showAlert}=props;
-    const handleclick = async (e)=>{
-        e.preventDefault();
-        const response = await fetch(`http://localhost:5000/api/auth/login`, {
-        method: 'POST', 
-        headers: {
-          'Content-Type': 'application/json'
-        },
-        body: JSON.stringify({email:crediantial.email,password:crediantial.password})
+  const API_KEY = "api_key=caa67a8e6595552254dc5543bf0720a7";
+  const BASE_URL = "https://api.themoviedb.org/3";
+  const IMG_URL = "https://image.tmdb.org/t/p/w500";
+
+  
+
+  const [movie, setMovie] = useState([]);
+  const fetchFun = async (API_URL) => {
+    await fetch(API_URL)
+      .then((res) => res.json())
+      .then((data) => {
+        setMovie(data.results);
       });
-      const json = await response.json()
-      console.log(json);
-      if(json.success){
-        localStorage.setItem('token2', json.authToken);
-        showAlert("success","login successfull")
-        navigate("/");        
-      }
-      else{
-        showAlert("danger","invalid credentials")
-      }
-    }
+  };
+  const API_URL = BASE_URL + "/movie/now_playing?" + API_KEY;
+  useEffect(() => {
+    fetchFun(API_URL);
+  }, []);
 
-    const onChange=(e)=>{
-      setCrediantial({ ...crediantial, [e.target.name]: e.target.value });
-    }
-    
+  const [current, setCurrent] = useState(0);
 
-    return (
+
+  const length = movie.slice(0, 3).length
+
+  const nextSlide = () => {
+    setCurrent(current === length - 1 ? 0 : current + 1);
+  };
+
+  // setTimeout(()=>{
+  //   nextSlide();
+  // },5000)
+
+  const [islogin,setLogin] = useState(true);
+
+  return (
     <>
-      
-        
-      <form className="container login_container" onSubmit={handleclick}>
-        <div className="mb-3 ">
-        <h1 className="text-center mb-4">Login</h1>
-          <label htmlFor="email" className="form-label">
-            Email address
-          </label>
-          <input
-            type="email"
-            className="form-control"
-            id="email"
-            aria-describedby="emailHelp"
-            name="email"
-            value={crediantial.email}
-            onChange={onChange}
-            
-          />
+      <div className="login_container container">
+        <div className="row container">
+          <div className="col-md-6 login_left">
+            {movie.map((slide, index) => {
+              return (
+                <div
+                  className={index === current ? 'slide active' : 'slide'}
+                  key={index}
+                >
+                  {index === current && (
+                    <>
+                      <img src={IMG_URL + slide.poster_path} alt='Movie image' className='image' />
+                    </>
+                  )}
+                </div>
+
+              );
+            })}
+
+
         </div>
-        <div className="mb-3">
-          <label htmlFor="password" className="form-label">
-            Password
-          </label>
-          <input
-            type="password"
-            className="form-control"
-            id="password"
-            name="password"
-            onChange={onChange}
-            value={crediantial.password}
-            minLength="5"
-          />
+        <div className="col-md-6">
+          {islogin ?
+           <LoginMain setLogin={setLogin}/> :
+          <Signup setLogin={setLogin}/>
+          }
+          
         </div>
-        <button type="submit" className="btn btn-primary">
-          Login
-        </button>
-        <p className="mt-3">Don't have an Account?
-          <Link to="/signup" className="acc px-3">Create Account</Link>
-        </p>
-      </form>
-      
+      </div>
+
+    </div>
+
+
+
     </>
   );
 };

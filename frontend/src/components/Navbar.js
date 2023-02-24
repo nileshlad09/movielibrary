@@ -73,13 +73,6 @@ const Navbar = () => {
                 >
                   Login
                 </Link>
-                <Link
-                  className="btn btn-primary mx-2"
-                  to="/signup"
-                  role="button"
-                >
-                  Signup
-                </Link>
               </form>
             ) : (
               <Link

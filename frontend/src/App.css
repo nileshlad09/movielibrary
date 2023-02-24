@@ -232,27 +232,6 @@ body{
   margin-top: 50px;
 }
 
-/*================login/signup Area Start================ */
-.login_container{
-  margin-top: 5rem;
-  width: 400px;
-  background-color: orange;
-  padding: 3rem;
-  color: white;
-  font-weight: 500;
-}
-.login_container button{
-  width: 100%;
-  margin-top: 2rem;
-  font-weight: 500;
-  font-size: 1.4rem;
-  cursor: pointer;
-}
-.acc{
-  color: blue;
-text-decoration: none;
-}
-/*================login/signup Area End================ */
 
 /*===============review Area Start================ */
 .review{

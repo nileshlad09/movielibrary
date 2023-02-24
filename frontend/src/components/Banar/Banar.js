@@ -39,7 +39,7 @@ const Banar = (props) => {
             {index === current && (
                 <>
               <img src={IMG_URL + slide.backdrop_path} alt='Movie image' className='image'/>
-              <h1>{slide.title?slide.title:slide.name}</h1>
+              <h3>{slide.title?slide.title:slide.name}</h3>
               </>
             )}
           </div>

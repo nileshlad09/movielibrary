@@ -1,40 +1,40 @@
 import React, { useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { useNavigate,Link } from "react-router-dom";
 
 
 const Signup = (props) => {
-    const [crediantial, setCrediantial] = useState({name:"",email:"",password:""});
-    const navigate = useNavigate()
-    const {showAlert}=props;
-    const handleclick = async (e)=>{
-        e.preventDefault();
-        const response = await fetch(`http://localhost:5000/api/auth/createuser`, {
-        method: 'POST', 
-        headers: {
-          'Content-Type': 'application/json'
-        },
-        body: JSON.stringify({name:crediantial.name,email:crediantial.email,password:crediantial.password})
-      });
-      const json = await response.json()
-      console.log(json);
-      if(json.success){
-        localStorage.setItem('token2', json.authToken);        
-        showAlert("success","account created successfull")
-        navigate('/')
-      }else{
-        showAlert("danger","Invalid Email")
-      }
+  const [crediantial, setCrediantial] = useState({ name: "", email: "", password: "" });
+  const navigate = useNavigate()
+  const { showAlert,setLogin } = props;
+  const handleclick = async (e) => {
+    e.preventDefault();
+    const response = await fetch(`http://localhost:5000/api/auth/createuser`, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify({ name: crediantial.name, email: crediantial.email, password: crediantial.password })
+    });
+    const json = await response.json()
+    console.log(json);
+    if (json.success) {
+      localStorage.setItem('token2', json.authToken);
+      showAlert("success", "account created successfull")
+      navigate('/')
+    } else {
+      showAlert("danger", "Invalid Email")
     }
+  }
 
-    const onChange=(e)=>{
-      setCrediantial({ ...crediantial, [e.target.name]: e.target.value });
-    }
+  const onChange = (e) => {
+    setCrediantial({ ...crediantial, [e.target.name]: e.target.value });
+  }
 
   return (
     <>
-      <form className="container login_container" onSubmit={handleclick}>
-      <div className="mb-3 ">
-      <h1 className="text-center mb-4">Signup</h1>
+      <form onSubmit={handleclick}>
+        <div className="mb-3 ">
+          <h2 className="text-center">Signup</h2>
           <label htmlFor="name" className="form-label">
             Name
           </label>
@@ -63,7 +63,7 @@ const Signup = (props) => {
             onChange={onChange}
           />
         </div>
-        <div className="mb-3">
+        <>
           <label htmlFor="password" className="form-label">
             Password
           </label>
@@ -77,10 +77,13 @@ const Signup = (props) => {
             required
             minLength="5"
           />
-        </div>
-        <button type="submit"  className="btn btn-primary">
+        </>
+        <button type="submit" className="btn btn-primary">
           Signup
         </button>
+        <p className="mt-3">Already have an Account?
+          <p className="acc mx-1" onClick={()=>setLogin(true)}>Login</p>
+        </p>
       </form>
     </>
   )
