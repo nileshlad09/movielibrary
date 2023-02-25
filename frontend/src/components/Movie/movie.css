@@ -40,6 +40,7 @@
     margin-left: 80px;
     margin-top: 70px;
     margin-bottom: 0;
+    font-size: 1.8rem;
   }
   
   .movieContainer3 .tv,
@@ -200,5 +201,10 @@
     .movie img {
         padding: 5px;
         border-radius: 10px;
+    }
+    .main .filter ul li {
+        padding: 2px 8px;
+        border-radius: 20px;
+        font-size: 13px;
     }
 }

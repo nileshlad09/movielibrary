@@ -1,4 +1,5 @@
 import './App.css';
+import { useState } from 'react';
 import MovieContainer from './components/Movie/MovieContainer';
 import WatchList from './components/WatchList/WatchList';
 import Navbar from './components/Navbar';
@@ -13,9 +14,10 @@ import DetailOfShow from './components/DetailOfShow/DetailOfShow';
 import TvshowContainer from './components/TvShows/TvshowContainer';
 import Login from './components/Login/Login';
 import Alert from './components/Alert';
-import { useState } from 'react';
 import Review from './components/Review/Review';
 import FetchReview from './components/Review/FetchReview';
+import Home from './components/Home/Home';
+import MovieState from './context/watchlist/MovieState';
 
 
 function App() {
@@ -34,11 +36,13 @@ function App() {
   return (
     <>
     <WatchlistState>
+      <MovieState>
     <Router>
         <Navbar/>
         <Alert alert={alert}/>
         <Routes>
-          <Route path="/"   element={<MovieContainer  showAlert={showAlert} /> } />
+          <Route path="/"   element={<Home  showAlert={showAlert} /> } />
+          <Route path="/movie"   element={<MovieContainer  showAlert={showAlert} /> } />
           <Route path="/tvshow"   element={<TvshowContainer showAlert={showAlert}/>} />
           <Route path="/watchlist"  element={<WatchList showAlert={showAlert}/>} />
           <Route path="/knowmore" element={<DetailOfMovie/>} />
@@ -48,6 +52,7 @@ function App() {
           <Route path="/review2" element={<FetchReview/>} />
         </Routes>
       </Router>
+      </MovieState>
       </WatchlistState>
     </>
   );

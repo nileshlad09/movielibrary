@@ -105,6 +105,8 @@ const WatchlistState = (props)=>{
         
         
         
+
+        
           
         
         

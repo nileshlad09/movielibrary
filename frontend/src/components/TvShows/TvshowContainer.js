@@ -1,16 +1,31 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState,useContext} from "react";
 import Banar from "../Banar/Banar";
 import TvshowItem from "./TvshowItem";
+import WatchlistContext from '../../context/watchlist/WatchlistContext'
 
 const API_KEY = "api_key=caa67a8e6595552254dc5543bf0720a7";
 const BASE_URL = "https://api.themoviedb.org/3";
 
 const Upcoming = (props) => {
+
+
+
+  const context = useContext(WatchlistContext)
+  const {movieN2}= context
+
+  console.log(movieN2)
+
+
+
+
+
+
+
   const [movie, setMovie] = useState([]);
   const [page, setPage] = useState(1);
   const [tpage, setTotalpage] = useState(1);
   const [movieN, setMovien] = useState("");
-  const [currentDisplay, setCurrentDisplay] = useState("");
+  const [currentDisplay, setCurrentDisplay] = useState("Airing Today");
   const { showAlert } = props;
   let pageNo = 1;
   let API_URL;
@@ -79,11 +94,21 @@ const Upcoming = (props) => {
     e.preventDefault();
     setMovien(e.target.value);
   };
+ 
+ const [isSearchBoxVisible,setSerchBoxVisible]=useState(true); 
+  const searchSection=()=>{
+    if(isSearchBoxVisible===true){
+      setSerchBoxVisible(false);
+    }
+    else{
+      setSerchBoxVisible(true);
+    }
+  }
 
   return (
     <>
       <div className="main">
-        <div className="nav2 ">
+        <div className="nav2 container">
           <div className="row">
             <div className="col-lg-6 col-md-12 col-md-12">
               <div className="filter">
@@ -94,8 +119,9 @@ const Upcoming = (props) => {
                 </ul>
               </div>
             </div>
-            <div className="col-lg-6 col-md-12 col-md-12">
-              <div className="d-flex movieSearch">
+            {/* <div className="col-lg-6 col-md-12 col-md-12">
+              <p onClick={searchSection}>search</p>
+              <div className="movieSearch" style={{display:isSearchBoxVisible?"flex":"none"}}>
                 <input
                   className="form-control me-2"
                   type="search"
@@ -112,7 +138,7 @@ const Upcoming = (props) => {
                   Search
                 </button>
               </div>
-            </div>
+            </div> */}
           </div>
         </div>
         <Banar movie={movie}></Banar>

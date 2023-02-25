@@ -1,0 +1,24 @@
+.homeSection-1{
+    margin: 40px 0;
+}
+.Now-playing{
+    display: flex;
+    overflow-x: auto;
+}
+.homeDeatil{
+    color: white;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 10px;
+    margin-bottom: 0;
+}
+.homeDeatil h3{
+    margin: 0;
+    padding: 0;
+}
+.homeDeatil p{
+    margin: 0;
+    padding: 0;
+    cursor: pointer;
+}
