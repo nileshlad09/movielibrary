@@ -184,9 +184,13 @@
         overflow-x: scroll;
         gap: 6px;
     }
+    .main .filter ul::-webkit-scrollbar {
+        display: none;
+    }
     .movieContainer2 h1 {
         margin-left: 20px;
         font-size: 1.5rem;
+        margin-top:30px;
     }
     
     .movie{
@@ -194,12 +198,26 @@
         margin: 0.4rem;
     }
     .movie img {
-        padding: 5px;
         border-radius: 10px;
     }
     .main .filter ul li {
         padding: 2px 8px;
         border-radius: 20px;
         font-size: 13px;
+    }
+    .movie .movie_info {
+        display: none;
+    }
+    .movie-info .buttons .watchlist i {
+        font-size: .8rem;
+    }
+    .movie-info .buttons button {
+        padding: 3px;
+    }
+    .movie-info {
+        opacity: 1;
+    }
+    .main .nav2 {
+        padding-bottom: 20px;
     }
 }

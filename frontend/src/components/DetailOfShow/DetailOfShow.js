@@ -25,7 +25,7 @@ const DetailOfMovie = () => {
   const close = () => {
     Navigate("/tvshow");
   };
-// console.log(coll);
+  // console.log(coll);
   useEffect(() => {
     //moviedata
     fetch(API_URL)
@@ -38,7 +38,7 @@ const DetailOfMovie = () => {
           q += data.name + " , ";
         });
         setGenres(q);
-      });      
+      });
 
 
     // trailer
@@ -52,7 +52,7 @@ const DetailOfMovie = () => {
           }
         });
       });
-      
+
 
 
 
@@ -67,160 +67,164 @@ const DetailOfMovie = () => {
           setProvider3(provider?.rent);
         }
       });
-      
+
 
   }, []);
   return (
     <>
-    <div className="detailofmovie2" style={{ backgroundImage: `url(${IMG_URL+movies.backdrop_path})`}}>   
-      <div className=" detailofmovie" key={id}>
-        <button className="btn btn-primary float-end  close" onClick={close}>
-          Close
-        </button>
-        <h1 className="text-center overview-title">{movies.name}</h1>
-        <p className="text-center">{movies.tagline}</p>
-        <div className="row overview">
-          <div className="col-lg-6">
-            <h1 className="text-center ">Overview</h1>
-            <p>{movies.overview}</p>
-            <div className="other">
-              <p>
-                No of Seasons : {movies.number_of_seasons} 
-              </p>
-              <p>Genres: {genres}</p>
-              <p>First Air Date: {movies.first_air_date}</p>
-              <p>Last Air Date: {movies.last_air_date}</p>
-            </div>
-            <div className="provider">
-              <h3>Where to Watch</h3>
-              <div
-                className="provider2"
-              >
-                <div
-                  className="providers"
-                  style={{
-                    display: providers === undefined ? "none" : "block",
-                  }}
-                >
-                  <h4>Watch Online</h4>
-                  <div className="p1">
-                    {providers != undefined ? (
-                      providers.map((p) => {
-                        return (
-                          <div className="ott">
-                            <img
-                              src={IMG_URL + p.logo_path}
-                              style={{
-                                display:
-                                  IMG_URL + p.logo_path ? "block" : "none",
-                              }}
-                              alt=""
-                            />
-                            <p className="provider-name">{p.provider_name}</p>
-                          </div>
-                        );
-                      })
-                    ) : (
-                      <p className="provider-name">currently not available</p>
-                    )}
-                  </div>
-                </div>
-                <div
-                  className="providers"
-                  style={{
-                    display: providers2 === undefined ? "none" : "block",
-                  }}
-                >
-                  <h4>Buy</h4>
-                  <div className="p1">
-                    {providers2 != undefined ? (
-                      providers2.map((p) => {
-                        return (
-                          <div className="ott">
-                            <img
-                              src={IMG_URL + p.logo_path}
-                              style={{
-                                display:
-                                  IMG_URL + p.logo_path ? "block" : "none",
-                              }}
-                              alt=""
-                            />
-                            <p className="provider-name">{p.provider_name}</p>
-                          </div>
-                        );
-                      })
-                    ) : (
-                      <p className="provider-name">currently not available</p>
-                    )}
-                  </div>
-                </div>
-                <div
-                  className="providers"
-                  style={{
-                    display: providers3 === undefined ? "none" : "block",
-                  }}
-                >
-                  <h4>Rent</h4>
-                  <div className="p1">
-                    {providers3 != undefined ? (
-                      providers3.map((p) => {
-                        return (
-                          <div className="ott">
-                            <img
-                              src={IMG_URL + p.logo_path}
-                              style={{
-                                display:
-                                  IMG_URL + p.logo_path ? "block" : "none",
-                              }}
-                              alt=""
-                            />
-                            <p className="provider-name">{p.provider_name}</p>
-                          </div>
-                        );
-                      })
-                    ) : (
-                      <p className="provider-name">currently not available</p>
-                    )}
-                  </div>
-                </div>
+      <div className="detailofmovie2" style={{ backgroundImage: `url(${IMG_URL + movies.backdrop_path})` }}>
+        <div className=" detailofmovie" key={id}>
+          <button className="btn btn-primary float-end  close" onClick={close}>
+            Close
+          </button>
+          <h1 className="text-center overview-title">{movies.name}</h1>
+          <p className="text-center">{movies.tagline}</p>
+          <div className="row overview">
+            <div className="col-lg-6">
+              <h1 className="text-center ">Overview</h1>
+              <p>{movies.overview}</p>
+              <div className="other">
+                <p>
+                  No of Seasons : {movies.number_of_seasons}
+                </p>
+                <p>Genres: {genres}</p>
+                <p>First Air Date: {movies.first_air_date}</p>
+                <p>Last Air Date: {movies.last_air_date}</p>
               </div>
-              <p className="provider-name" style={{display:(providers===undefined && providers2===undefined && providers3===undefined)?"block":"none"}}>currently not available</p>
             </div>
-          </div>
-          <div className="col-lg-6">
+            <div className="col-lg-6">
               <div className="trailer">
-              <iframe
-                width="560"
-                height="315"
-                src={"https://www.youtube.com/embed/" + trailer.key}
-                name={trailer.name}
-                frameBorder="0"
-                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                allowFullScreen
-              ></iframe>
-              <div>
-              <h3>{trailer.name?trailer.name:"No Trailer Found"}</h3>
+                <iframe
+                  width={"100%"}
+                  height={"100%"}
+                  src={"https://www.youtube.com/embed/" + trailer.key}
+                  name={trailer.name}
+                  frameBorder="0"
+                  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                  allowFullScreen
+                ></iframe>
+                <div>
+                  <h3>{trailer.name ? trailer.name : "No Trailer Found"}</h3>
+                </div>
               </div>
             </div>
           </div>
-        </div>
-      
-        <div className="row">
-          <div className="col-lg-12">
-              <SimilarMovie coll={coll}/>
+          <div className="row">
+            <div className="col-lg-12">
+              <div className="provider">
+                <h3>Where to Watch</h3>
+                <div
+                  className="provider2"
+                >
+                  <div
+                    className="providers"
+                    style={{
+                      display: providers === undefined ? "none" : "block",
+                    }}
+                  >
+                    <h4>Watch Online</h4>
+                    <div className="p1">
+                      {providers != undefined ? (
+                        providers.map((p) => {
+                          return (
+                            <div className="ott">
+                              <img
+                                src={IMG_URL + p.logo_path}
+                                style={{
+                                  display:
+                                    IMG_URL + p.logo_path ? "block" : "none",
+                                }}
+                                alt=""
+                              />
+                              <p className="provider-name">{p.provider_name}</p>
+                            </div>
+                          );
+                        })
+                      ) : (
+                        <p className="provider-name">currently not available</p>
+                      )}
+                    </div>
+                  </div>
+                  <div
+                    className="providers"
+                    style={{
+                      display: providers2 === undefined ? "none" : "block",
+                    }}
+                  >
+                    <h4>Buy</h4>
+                    <div className="p1">
+                      {providers2 != undefined ? (
+                        providers2.map((p) => {
+                          return (
+                            <div className="ott">
+                              <img
+                                src={IMG_URL + p.logo_path}
+                                style={{
+                                  display:
+                                    IMG_URL + p.logo_path ? "block" : "none",
+                                }}
+                                alt=""
+                              />
+                              <p className="provider-name">{p.provider_name}</p>
+                            </div>
+                          );
+                        })
+                      ) : (
+                        <p className="provider-name">currently not available</p>
+                      )}
+                    </div>
+                  </div>
+                  <div
+                    className="providers"
+                    style={{
+                      display: providers3 === undefined ? "none" : "block",
+                    }}
+                  >
+                    <h4>Rent</h4>
+                    <div className="p1">
+                      {providers3 != undefined ? (
+                        providers3.map((p) => {
+                          return (
+                            <div className="ott">
+                              <img
+                                src={IMG_URL + p.logo_path}
+                                style={{
+                                  display:
+                                    IMG_URL + p.logo_path ? "block" : "none",
+                                }}
+                                alt=""
+                              />
+                              <p className="provider-name">{p.provider_name}</p>
+                            </div>
+                          );
+                        })
+                      ) : (
+                        <p className="provider-name">currently not available</p>
+                      )}
+                    </div>
+                  </div>
+                </div>
+                <p className="provider-name" style={{ display: (providers === undefined && providers2 === undefined && providers3 === undefined) ? "block" : "none" }}>currently not available</p>
+              </div>
+            </div>
           </div>
-        </div>
 
-        <div className="row">
-          <div className="col-lg-6">
-            <FetchReview />
+          <div className="row">
+            <div className="col-lg-12">
+              <SimilarMovie coll={coll} />
+            </div>
           </div>
-          <div className="col-lg-6">
-            <Cast set="tv"/>
+
+          <div className="row">
+            <div className="col-lg-6">
+              <Cast set="tv" />
+            </div>
+            <div className="col-lg-6">
+              <FetchReview />
+            </div>
           </div>
         </div>
       </div>
-      </div>  
     </>
   );
 };

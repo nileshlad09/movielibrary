@@ -11,25 +11,7 @@
 }
 
 .Now-playing::-webkit-scrollbar {
-    height: 5px;
     display: none;
-}
-
-/* Track */
-.Now-playing::-webkit-scrollbar-track {
-    box-shadow: inset 0 0 5px grey;
-    border-radius: 10px;
-}
-
-/* Handle */
-.Now-playing::-webkit-scrollbar-thumb {
-    background: gray !important;
-    border-radius: 10px;
-}
-
-/* Handle on hover */
-.Now-playing::-webkit-scrollbar-thumb:hover {
-    background: #b30000;
 }
 
 .homeDeatil {
@@ -50,4 +32,10 @@
     margin: 0;
     padding: 0;
     cursor: pointer;
+}
+
+@media screen and (max-width:500px) {
+    .homeSection{
+        margin-top: 30px;
+    }
 }
