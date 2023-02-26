@@ -122,7 +122,7 @@ const MovieContainer = (props) => {
               </div>
             </div>
             <div className="col-lg-6 col-md-12 col-md-12">
-              {/* <div className="d-flex movieSearch">
+              <div className="d-flex movieSearch">
                 <input
                   className="form-control me-2"
                   type="search"
@@ -138,7 +138,7 @@ const MovieContainer = (props) => {
                 >
                   Search
                 </button>
-              </div> */}
+              </div>
             </div>
           </div>
         </div>

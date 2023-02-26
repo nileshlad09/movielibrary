@@ -17,7 +17,6 @@ import Alert from './components/Alert';
 import Review from './components/Review/Review';
 import FetchReview from './components/Review/FetchReview';
 import Home from './components/Home/Home';
-import MovieState from './context/watchlist/MovieState';
 
 
 function App() {
@@ -36,7 +35,6 @@ function App() {
   return (
     <>
     <WatchlistState>
-      <MovieState>
     <Router>
         <Navbar/>
         <Alert alert={alert}/>
@@ -52,7 +50,6 @@ function App() {
           <Route path="/review2" element={<FetchReview/>} />
         </Routes>
       </Router>
-      </MovieState>
       </WatchlistState>
     </>
   );

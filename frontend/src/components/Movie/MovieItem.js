@@ -33,6 +33,7 @@ const MovieItem = (props) => {
           src={movie.poster_path ? IMG_URL + movie.poster_path : image}
           onClick={() => {
             localStorage.setItem("movieId", movie.id);
+            console.log(movie.id)
             navigate("/knowmore");
           }}
         />

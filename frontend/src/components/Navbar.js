@@ -1,29 +1,14 @@
-import React,{useState,useContext} from "react";
+import React from "react";
 import { Link, useLocation } from "react-router-dom";
-
-import WatchlistContext from '../context/watchlist/WatchlistContext'
 import './navbar.css'
 
 const Navbar = () => {
   const location = useLocation();
-  
-  const context = useContext(WatchlistContext)
-  const {setMovien2}= context
+
 
   const logout = () => {
     localStorage.clear("token2");
   };
-
-  const [movieN, setMovien] = useState("");
-  const onchange = (e) => {
-    e.preventDefault();
-    setMovien(e.target.value);
-  };
-  const handleClick=(e)=>{
-     e.preventDefault();
-     console.log(movieN);
-     setMovien2(movieN)
-  }
 
 
   return (
@@ -82,24 +67,6 @@ const Navbar = () => {
                   WatchList
                 </Link>
                 </li>
-              <li className="nav-item">
-                <form onSubmit={handleClick} className="movieSearchNav">
-                 <input
-                  className="form-control"
-                  type="search"
-                  placeholder="Search"
-                  aria-label="Search"
-                  onChange={onchange}
-                />
-                <button
-                  disabled={movieN.length <= 0}
-                  className="btn btn-dark"
-                  type="submit"
-                >
-                  Search
-                </button>
-                </form>
-              </li>
             </ul>
             {!localStorage.getItem("token2") ? (
               <form className="d-flex">

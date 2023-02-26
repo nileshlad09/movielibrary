@@ -8,19 +8,6 @@ const BASE_URL = "https://api.themoviedb.org/3";
 
 const Upcoming = (props) => {
 
-
-
-  const context = useContext(WatchlistContext)
-  const {movieN2}= context
-
-  console.log(movieN2)
-
-
-
-
-
-
-
   const [movie, setMovie] = useState([]);
   const [page, setPage] = useState(1);
   const [tpage, setTotalpage] = useState(1);
@@ -95,15 +82,7 @@ const Upcoming = (props) => {
     setMovien(e.target.value);
   };
  
- const [isSearchBoxVisible,setSerchBoxVisible]=useState(true); 
-  const searchSection=()=>{
-    if(isSearchBoxVisible===true){
-      setSerchBoxVisible(false);
-    }
-    else{
-      setSerchBoxVisible(true);
-    }
-  }
+ 
 
   return (
     <>
@@ -119,9 +98,8 @@ const Upcoming = (props) => {
                 </ul>
               </div>
             </div>
-            {/* <div className="col-lg-6 col-md-12 col-md-12">
-              <p onClick={searchSection}>search</p>
-              <div className="movieSearch" style={{display:isSearchBoxVisible?"flex":"none"}}>
+            <div className="col-lg-6 col-md-12 col-md-12">
+              <div className="d-flex movieSearch">
                 <input
                   className="form-control me-2"
                   type="search"
@@ -138,7 +116,7 @@ const Upcoming = (props) => {
                   Search
                 </button>
               </div>
-            </div> */}
+            </div>
           </div>
         </div>
         <Banar movie={movie}></Banar>

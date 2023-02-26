@@ -85,7 +85,6 @@
 .movie img {
     float: left;
     width: 100%;
-    padding: 10px;
     cursor: pointer;
 }
 
@@ -99,8 +98,6 @@
     bottom: 0;
     right: 0;
     left: 0;
-    margin: 10px;
-    /* background-color: rgba(0, 0, 0, 0.549); */
     background-color: rgba(0, 0, 0, 0.884);
 }
 
@@ -145,8 +142,6 @@
 
 .movie-info .buttons {
     position: absolute;
-    top: 10px;
-    left: 10px;
 }
 
 .movie-info .buttons button {

@@ -87,7 +87,6 @@ const DetailOfMovie = () => {
             <h1 className="text-center ">Overview</h1>
             <p>{movies.overview}</p>
             <div className="other">
-              <p>Status : {movies.status}</p>
               <p>
                 Runtime : {Math.floor(movies.runtime / 60)}hour{" "}
                 {movies.runtime % 60} min
@@ -118,11 +117,14 @@ const DetailOfMovie = () => {
               <h3>Where to Watch</h3>
               <div
                 className="provider2"
+                style={{
+                  display: providers === undefined ? "none" : "flex",
+                }}
               >
                 <div
                   className="providers"
                   style={{
-                    display: providers === undefined ? "none" : "block",
+                    display: providers === undefined ? "none" : "flex",
                   }}
                 >
                   <h4>Watch Online</h4>
@@ -218,11 +220,11 @@ const DetailOfMovie = () => {
         </div>
 
         <div className="row">
-        <div className="col-lg-6">
+        <div className="col-lg-12">
             <Cast set="movie"/>
           </div>
           <div className="col-lg-6">
-            <FetchReview />
+            {/* <FetchReview /> */}
           </div>
         </div>
       </div>
