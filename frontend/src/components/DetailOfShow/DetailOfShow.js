@@ -4,6 +4,7 @@ import { useNavigate } from "react-router-dom";
 import Cast from "../Other/Cast";
 import FetchReview from "../Review/FetchReview";
 import SimilarMovie from "../Other/SimilarMovie";
+import Trailer from "../Other/Trailer";
 
 const API_KEY = "api_key=caa67a8e6595552254dc5543bf0720a7";
 const BASE_URL = "https://api.themoviedb.org/3";
@@ -74,8 +75,8 @@ const DetailOfMovie = () => {
     <>
       <div className="detailofmovie2" style={{ backgroundImage: `url(${IMG_URL + movies.backdrop_path})` }}>
         <div className=" detailofmovie" key={id}>
-          <button className="btn btn-primary float-end  close" onClick={close}>
-            Close
+          <button className="btn btn-primary float-end close" onClick={close}>
+            <i class="fa-solid fa-circle-xmark"></i>
           </button>
           <h1 className="text-center overview-title">{movies.name}</h1>
           <p className="text-center">{movies.tagline}</p>
@@ -93,20 +94,7 @@ const DetailOfMovie = () => {
               </div>
             </div>
             <div className="col-lg-6">
-              <div className="trailer">
-                <iframe
-                  width={"100%"}
-                  height={"100%"}
-                  src={"https://www.youtube.com/embed/" + trailer.key}
-                  name={trailer.name}
-                  frameBorder="0"
-                  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                  allowFullScreen
-                ></iframe>
-                <div>
-                  <h3>{trailer.name ? trailer.name : "No Trailer Found"}</h3>
-                </div>
-              </div>
+              <Trailer trailer={trailer}/>
             </div>
           </div>
           <div className="row">
@@ -203,9 +191,8 @@ const DetailOfMovie = () => {
                       )}
                     </div>
                   </div>
+                <p className="provider-name" style={{ display: (providers === undefined && providers2 === undefined && providers3 === undefined) ? "block" : "none" }}>currently not available</p>              </div>
                 </div>
-                <p className="provider-name" style={{ display: (providers === undefined && providers2 === undefined && providers3 === undefined) ? "block" : "none" }}>currently not available</p>
-              </div>
             </div>
           </div>
 

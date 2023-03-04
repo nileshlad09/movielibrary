@@ -32,3 +32,19 @@
     color:#0B5ED8;
     cursor: pointer;
 }
+
+.login_container .row {
+margin: auto;
+}
+.login_container form{
+    margin-top: 25px;
+}
+
+@media screen and (max-width:700px) {
+   .login_container{
+    height: calc(100vh - 80px);
+    margin-top: 0;
+    display: flex;
+    align-items: center;
+   }   
+}
