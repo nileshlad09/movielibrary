@@ -1,25 +1,28 @@
 import React, { useEffect, useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { useNavigate,useParams } from "react-router-dom";
 import Cast from "../Other/Cast";
 import FetchReview from "../Review/FetchReview";
 import SimilarMovie from "../Other/SimilarMovie";
 import './detailofmovie.css'
 import Trailer from "../Other/Trailer";
 import Wheretowatch from "../Other/Wheretowatch";
+import Overview from "../Other/Overview";
 const API_KEY = "api_key=caa67a8e6595552254dc5543bf0720a7";
 const BASE_URL = "https://api.themoviedb.org/3";
 const IMG_URL = "https://image.tmdb.org/t/p/w500";
 
 
 const DetailOfMovie = () => {
-  const id = localStorage.getItem("movieId");
-  let API_URL = BASE_URL + `/movie/${id}?` + API_KEY;
+  const params = useParams();
+  const movieid = params.id;
+  const type = params.type;
+  // const id = localStorage.getItem("movieId");
+  let API_URL = BASE_URL + `/${type}/${movieid}?` + API_KEY;
   const [movies, setMovie] = useState([]);
   const [genres, setGenres] = useState([]);
   const [trailer, setTrailer] = useState("");
   
   const [coll, setColl] = useState([]);
-  const [background, setBackground] = useState([]);
   let Navigate = useNavigate();
   const close = () => {
     Navigate(-1);
@@ -33,12 +36,16 @@ const DetailOfMovie = () => {
       .then((res) => res.json())
       .then((data) => {
         setMovie(data);
-        if (data.belongs_to_collection != null) {
+        console.log(data)
+        if(data.seasons){
+          setColl(data.seasons)
+        }
+        else if(data.belongs_to_collection!=undefined) {
           fetch(BASE_URL + `/collection/${data?.belongs_to_collection?.id}?` + API_KEY)
             .then((res) => res.json())
             .then((data) => {
+              console.log(data);
               setColl(data.parts);
-              setBackground(data);
             });
         }
         var q = "";
@@ -48,7 +55,7 @@ const DetailOfMovie = () => {
         setGenres(q);
       });
     // trailer
-    fetch(BASE_URL + `/movie/` + id + `/videos?` + API_KEY)
+    fetch(BASE_URL + `/${type}/` + movieid + `/videos?` + API_KEY)
       .then((res) => res.json())
       .then((videoData) => {
         videoData.results.forEach((element) => {
@@ -62,30 +69,22 @@ const DetailOfMovie = () => {
     
 
   }, []);
-
+console.log(coll)
 
   return (
     <>
       <div className="detailofmovie2" style={{ backgroundImage: `url(${IMG_URL + movies.backdrop_path})` }}>
-        <div className=" detailofmovie" key={id}>
+        <div className=" detailofmovie" key={movieid}>
           <button className="btn btn-primary float-end close" onClick={close}>
             <i class="fa-solid fa-circle-xmark"></i>
           </button>
-          <h1 className="text-center overview-title">{movies.title}</h1>
+          <h1 className="text-center overview-title">{movies.title?movies.title:movies.name}</h1>
           <p className="text-center">{movies.tagline}</p>
           <div className="row overview">
             <div className="col-lg-6">
               <h1 className="text-center ">Overview</h1>
               <p>{movies.overview}</p>
-              <div className="other">
-                <p>
-                  Runtime : {Math.floor(movies.runtime / 60)}hour{" "}
-                  {movies.runtime % 60} min
-                </p>
-                <p>Genres: {genres}</p>
-                <p>Release Date: {movies.release_date}</p>
-              </div>
-
+              <Overview type={type} movies={movies} genres={genres}/>
             </div>
             <div className="col-lg-6">
               <Trailer trailer={trailer}/>
@@ -94,7 +93,7 @@ const DetailOfMovie = () => {
 
           <div className="row">
             <div className="col-lg-12">
-              <Wheretowatch/>
+              <Wheretowatch type={type} movieid={movieid}/>
             </div>
           </div>
           <div className="row">
@@ -105,7 +104,7 @@ const DetailOfMovie = () => {
 
           <div className="row">
             <div className="col-lg-6">
-              <Cast set="movie" />
+              <Cast type={type} movieid={movieid} />
             </div>
             <div className="col-lg-6">
               <FetchReview />

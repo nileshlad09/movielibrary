@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from 'react'
 import MovieItem from '../Movie/MovieItem';
-import TvshowItem from '../TvShows/TvshowItem';
 import Banar from '../Banar/Banar';
 import './home.css'
 const API_KEY = "api_key=caa67a8e6595552254dc5543bf0720a7";
@@ -155,7 +154,7 @@ const Home = () => {
             tvNP.map((movie, index) => {
               return (
                 index <= 9 ?
-                  <TvshowItem
+                  <MovieItem
                     key={movie.id}
                     movie={movie}
                   /> : ""
@@ -174,7 +173,7 @@ const Home = () => {
             tvTR.map((movie, index) => {
               return (
                 index <= 9 ?
-                  <TvshowItem
+                  <MovieItem
                     key={movie.id}
                     movie={movie}
                   /> : ""

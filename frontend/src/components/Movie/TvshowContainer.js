@@ -1,15 +1,14 @@
 import React, { useEffect, useState} from "react";
 import Banar from "../Banar/Banar";
-import TvshowItem from "./TvshowItem";
 import { useNavigate, useParams } from "react-router-dom";
+import MovieItem from "./MovieItem";
 const API_KEY = "api_key=caa67a8e6595552254dc5543bf0720a7";
 const BASE_URL = "https://api.themoviedb.org/3";
 
 const Upcoming = (props) => {
   let navigate = useNavigate();
   const params = useParams();
-  const movieName = params.type;
-
+  const movieName = params.name;
   const [movie, setMovie] = useState([]);
   const [page, setPage] = useState(1);
   const [tpage, setTotalpage] = useState(1);
@@ -67,10 +66,6 @@ const Upcoming = (props) => {
     fetchFun(API_URL);
   };
 
-  // useEffect(() => {
-  //   API_URL = BASE_URL + "/tv/popular?" + API_KEY + `&page=1`;
-  //   fetchFun(API_URL);
-  // }, []);
 
   const nowPlaying = () => {
     API_URL = BASE_URL + "/tv/airing_today?" + API_KEY + `&page=1`;
@@ -154,8 +149,8 @@ const Upcoming = (props) => {
             {movie.length > 0 &&
               movie.map((movie) => {
                 return (
-                  <TvshowItem
-                    key={movie.id}
+                  <MovieItem
+                  key={movie.id}
                     movie={movie}
                     showAlert={showAlert}
                   />

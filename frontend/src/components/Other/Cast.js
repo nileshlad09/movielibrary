@@ -7,8 +7,7 @@ const IMG_URL = "https://image.tmdb.org/t/p/w500";
 
 const Cast = (props) => {
   const [cast, setCast] = useState([]);
-  const movieId = localStorage.getItem("movieId");
-  const API_URL = BASE_URL + `/${props.set}/${movieId}/credits?` + API_KEY;
+  const API_URL = BASE_URL + `/${props.type}/${props.movieid}/credits?` + API_KEY;
   useEffect(() => {
     fetch(API_URL)
       .then((res) => res.json())

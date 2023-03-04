@@ -33,6 +33,7 @@ const WatchlistState = (props)=>{
       }
 
       const addWatchlist= async (movieId,movieName,typeOfContent)=>{
+        console.log(movieName,typeOfContent,movieId)
         const response = await fetch(`${host}/api/watchlist/addwatchlist`, {
           method: 'POST', 
           headers: {
@@ -42,7 +43,7 @@ const WatchlistState = (props)=>{
           body: JSON.stringify({movieId,movieName,typeOfContent})
         });
         const json = await response.json()
-        console.log(json);
+        // console.log(json);
         setWatchlist(watchlist.concat(json))
         }
          

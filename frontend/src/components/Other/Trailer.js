@@ -7,7 +7,6 @@ const Trailer = ({trailer}) => {
                 <iframe
                     width={"100%"}
                     height={"100%"}
-
                     src={"https://www.youtube.com/embed/" + trailer.key}
                     name={trailer.name}
                     frameBorder="0"

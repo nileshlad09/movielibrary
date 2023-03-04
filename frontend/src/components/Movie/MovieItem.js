@@ -12,7 +12,7 @@ const MovieItem = (props) => {
   const { addWatchlist } = context;
 
   const addWatchList = () => {
-    addWatchlist(movie.id, movie.title, 'movie');
+    addWatchlist(movie.id, movie.title?movie.title:movie.name, movie.title?'movie':'tv');
     showAlert("success", "movie added to watchlist");
   };
   
@@ -26,6 +26,7 @@ const MovieItem = (props) => {
       return "red";
     }
   };
+  console.log(movie);
   return (
     <>
       <div className="movie" key={movie.id}>
@@ -43,7 +44,12 @@ const MovieItem = (props) => {
               <h3>{movie.title?movie.title:movie.name}</h3>
             </div>
             <div className="releaseDate">
-              <h4>{movie.release_date?movie.release_date.slice(0, 4):movie.release_date}</h4>
+              {
+                movie.release_date?
+                <h4>{movie.release_date?movie.release_date.slice(0, 4):movie.release_date}</h4>
+                :
+                <h4>{movie.first_air_date?movie.first_air_date.slice(0, 4):movie.first_air_date}</h4>
+              }
               <span className={voteColor()}>{movie.vote_average}</span>
             </div>
           </div>

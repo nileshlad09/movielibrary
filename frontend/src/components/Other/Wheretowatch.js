@@ -1,17 +1,20 @@
 import React ,{useState,useEffect} from 'react'
+
 const API_KEY = "api_key=caa67a8e6595552254dc5543bf0720a7";
 const BASE_URL = "https://api.themoviedb.org/3";
 const IMG_URL = "https://image.tmdb.org/t/p/w500";
 
-const Wheretowatch = () => {
+const Wheretowatch = (params) => {
+   const {movieid,type}=params;
+
     const [providers, setProvider] = useState([]);
     const [providers2, setProvider2] = useState([]);
     const [providers3, setProvider3] = useState([]);
-    const id = localStorage.getItem("movieId");
+    // const id = localStorage.getItem("movieId");
 
     useEffect(()=>{
         //watch provider
-        fetch(BASE_URL + `/movie/${id}/watch/providers?` + API_KEY)
+        fetch(BASE_URL + `/${type}/${movieid}/watch/providers?` + API_KEY)
         .then((res) => res.json())
         .then((data) => {
             let provider = data.results.IN;
