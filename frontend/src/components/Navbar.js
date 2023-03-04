@@ -34,10 +34,10 @@ const Navbar = () => {
               <li className="nav-item">
                 <Link
                   className={`nav-link ${
-                    location.pathname === "/movie" ? "active" : ""
+                    location.pathname === "/movie/now_playing" ? "active" : ""
                   }`}
                   aria-current="page"
-                  to="/movie"
+                  to="/movie/now_playing"
                 >
                   Movie
                 </Link>
@@ -45,10 +45,10 @@ const Navbar = () => {
               <li className="nav-item">
                 <Link
                   className={`nav-link ${
-                    location.pathname === "/tvshow" ? "active" : ""
+                    location.pathname === "/tv/airing_today" ? "active" : ""
                   }`}
                   aria-current="page"
-                  to="/tvshow"
+                  to="/tv/airing_today"
                 >
                   Tv Shows
                 </Link>

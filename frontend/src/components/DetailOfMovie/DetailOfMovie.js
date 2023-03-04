@@ -13,8 +13,7 @@ const IMG_URL = "https://image.tmdb.org/t/p/w500";
 
 const DetailOfMovie = () => {
   const id = localStorage.getItem("movieId");
-  let API_URL = process.env.REACT_APP_BASE_URL + `/movie/${id}?` + process.env.REACT_APP_API_KEY;
-  console.log(API_URL)
+  let API_URL = BASE_URL + `/movie/${id}?` + API_KEY;
   const [movies, setMovie] = useState([]);
   const [genres, setGenres] = useState([]);
   const [trailer, setTrailer] = useState("");
@@ -23,7 +22,7 @@ const DetailOfMovie = () => {
   const [background, setBackground] = useState([]);
   let Navigate = useNavigate();
   const close = () => {
-    Navigate("/");
+    Navigate(-1);
   };
 
 

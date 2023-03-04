@@ -24,7 +24,7 @@ const DetailOfMovie = () => {
 
   let Navigate = useNavigate();
   const close = () => {
-    Navigate("/tvshow");
+    Navigate(-1);
   };
   // console.log(coll);
   useEffect(() => {

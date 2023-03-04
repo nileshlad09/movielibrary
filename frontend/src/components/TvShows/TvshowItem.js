@@ -24,6 +24,7 @@ const MovieItem = (props) => {
       return "red";
     }
   };
+// console.log(movie);
   return (
     <>
       <div className="movie" key={movie.id}>
@@ -31,8 +32,8 @@ const MovieItem = (props) => {
           src={movie.poster_path ? IMG_URL + movie.poster_path : image}
           onClick={() => {
             localStorage.setItem("movieId", movie.id);
-            navigate("/knowmoreShow");
-          }}
+            navigate((movie.title? "/movie":"/tv") + "/knowmore/" + movie.id);
+            }}
         />
         <div className="movie-info">
           <div className="movie_info">

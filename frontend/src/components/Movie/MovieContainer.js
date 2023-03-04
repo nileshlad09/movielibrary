@@ -1,54 +1,56 @@
 import React, { useEffect, useState } from "react";
 import Banar from "../Banar/Banar";
 import MovieItem from "./MovieItem";
-
+import { useNavigate, useParams } from "react-router-dom";
 const API_KEY = "api_key=caa67a8e6595552254dc5543bf0720a7";
 const BASE_URL = "https://api.themoviedb.org/3";
 
 const MovieContainer = (props) => {
+  let navigate = useNavigate();
+
+  const params = useParams();
+  const movieName = params.type;
+
   const { showAlert } = props;
   const [movie, setMovie] = useState([]);
   const [page, setPage] = useState(1);
   const [tpage, setTotalpage] = useState(1);
-  const [current, setCurrent] = useState(1);
   const [movieN, setMovien] = useState("");
   const [currentDisplay, setCurrentDisplay] = useState("Now Playing");
   let pageNo = 1;
   let API_URL;
 
-  const fetchFun = async (API_URL, now) => {
+  const fetchFun = async (API_URL) => {
     await fetch(API_URL)
       .then((res) => res.json())
       .then((data) => {
         setMovie(data.results);
-        setCurrent(now);
         setTotalpage(data.total_pages);
         setPage(data.page);
       });
   };
   const pageChange = async (pageNo) => {
-    if (movieN) {
-      API_URL =
-        BASE_URL +
-        "/search/movie?" +
-        API_KEY +
-        `&query=${movieN}&page=${pageNo}`;
-    } else if (current === 1) {
+    if (movieName == "now_playing") {
       API_URL = BASE_URL + "/movie/now_playing?" + API_KEY + `&page=${pageNo}`;
-    } else if (current === 2) {
-      API_URL = BASE_URL + "/movie/upcoming?" + API_KEY + `&page=${pageNo}`;
-    } else if (current === 3) {
-      API_URL = BASE_URL + "/movie/popular?" + API_KEY + `&page=${pageNo}`;
-    } else if (current === 4) {
-      API_URL = BASE_URL + "/movie/top_rated?" + API_KEY + `&page=${pageNo}`;
-    } else {
-      API_URL =
-        BASE_URL +
-        "/discover/movie?sort_by=popularity.desc&" +
-        API_KEY +
-        `&page=${pageNo}`;
     }
-    fetchFun(API_URL);
+    else if(movieName=="upcoming"){
+      API_URL = BASE_URL + "/movie/upcoming?" + API_KEY + `&page=${pageNo}`;
+    }
+    else if(movieName=="popular"){
+      API_URL = BASE_URL + "/movie/popular?" + API_KEY + `&page=${pageNo}`;
+    }
+    else if(movieName=="top_rated"){
+      API_URL = BASE_URL + "/movie/top_rated?" + API_KEY + `&page=${pageNo}`;
+    }
+    else {
+      API_URL =
+      BASE_URL +
+      "/search/movie?" +
+      API_KEY +
+      `&query=${movieName}&page=${pageNo}`;
+    }
+
+    fetchFun(API_URL); 
   };
 
   const nextBtn = () => {
@@ -61,50 +63,68 @@ const MovieContainer = (props) => {
     pageChange(pageNo);
   };
 
-  const search = () => {
-    API_URL = BASE_URL + "/search/movie?" + API_KEY + `&query=${movieN}`;
-    setCurrentDisplay(movieN);
-    fetchFun(API_URL);
-  };
-
-  useEffect(() => {
-    API_URL =
-      BASE_URL +
-      "/discover/movie?sort_by=popularity.desc&" +
-      API_KEY +
-      `&page=1`;
-    fetchFun(API_URL);
-  }, []);
 
   const nowPlaying = () => {
     API_URL = BASE_URL + "/movie/now_playing?" + API_KEY + `&page=1`;
-    let now = 1;
     setCurrentDisplay("Now Playing");
-    fetchFun(API_URL, now);
+    navigate('/movie' + "/now_playing")
+    fetchFun(API_URL);
   };
   const Upcoming = () => {
     API_URL = BASE_URL + "/movie/upcoming?" + API_KEY + `&page=1`;
-    let now = 2;
     setCurrentDisplay("Upcoming");
-    fetchFun(API_URL, now);
+    navigate('/movie' + "/upcoming")
+    fetchFun(API_URL);
   };
   const popular = () => {
     API_URL = BASE_URL + "/movie/popular?" + API_KEY + `&page=1`;
-    let now = 3;
     setCurrentDisplay("Popular");
-    fetchFun(API_URL, now);
+    navigate('/movie' + "/popular")
+    fetchFun(API_URL);
   };
   const topRated = () => {
     API_URL = BASE_URL + "/movie/top_rated?" + API_KEY + `&page=1`;
-    let now = 4;
     setCurrentDisplay("Top Rated");
-    fetchFun(API_URL, now);
+    navigate('/movie' + "/top_rated")
+    fetchFun(API_URL);
   };
 
   const onchange = (e) => {
     e.preventDefault();
     setMovien(e.target.value);
   };
+
+  const search = () => {
+    API_URL = BASE_URL + "/search/movie?" + API_KEY + `&query=${movieN?movieN:movieName}`;
+    setCurrentDisplay(movieN?movieN:movieName);
+    navigate('/movie/' + (movieN?movieN:movieName))
+    fetchFun(API_URL);
+  };
+
+
+  
+  
+  useEffect(() => {
+    if (movieName == "now_playing") {
+      nowPlaying();
+    }
+    else if(movieName=="upcoming"){
+      Upcoming();
+    }
+    else if(movieName=="popular"){
+       popular();
+    }
+    else if(movieName=="top_rated"){
+      topRated();
+    }
+    else {
+      search();
+    }
+  }, [movieName])
+
+
+
+
 
   return (
     <>
@@ -143,9 +163,9 @@ const MovieContainer = (props) => {
           </div>
         </div>
 
-      <Banar movie={movie}></Banar>
-      
-      
+        <Banar movie={movie}></Banar>
+
+
         <div className="movieContainer2">
           <h1>{currentDisplay}</h1>
           <div className="movieContainer">

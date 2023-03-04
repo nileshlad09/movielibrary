@@ -34,7 +34,7 @@ const MovieItem = (props) => {
           onClick={() => {
             localStorage.setItem("movieId", movie.id);
             console.log(movie.id)
-            navigate("/knowmore");
+            navigate( (movie.title?"/movie":"/tv")+"/knowmore/" + movie.id);
           }}
         />
         <div className="movie-info">

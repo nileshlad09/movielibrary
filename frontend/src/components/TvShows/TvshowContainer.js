@@ -1,12 +1,14 @@
-import React, { useEffect, useState,useContext} from "react";
+import React, { useEffect, useState} from "react";
 import Banar from "../Banar/Banar";
 import TvshowItem from "./TvshowItem";
-import WatchlistContext from '../../context/watchlist/WatchlistContext'
-
+import { useNavigate, useParams } from "react-router-dom";
 const API_KEY = "api_key=caa67a8e6595552254dc5543bf0720a7";
 const BASE_URL = "https://api.themoviedb.org/3";
 
 const Upcoming = (props) => {
+  let navigate = useNavigate();
+  const params = useParams();
+  const movieName = params.type;
 
   const [movie, setMovie] = useState([]);
   const [page, setPage] = useState(1);
@@ -27,15 +29,26 @@ const Upcoming = (props) => {
       });
   };
 
+  
   const pageChange = async (pageNo) => {
-    if (movieN) {
-      API_URL =
-        BASE_URL + "/search/tv?" + API_KEY + `&query=${movieN}&page=${pageNo}`;
-    } else {
+    if (movieName == "airing_today") {
+      API_URL = BASE_URL + "/tv/airing_today?" + API_KEY + `&page=${pageNo}`;
+    }
+    else if(movieName=="popular"){
       API_URL = BASE_URL + "/tv/popular?" + API_KEY + `&page=${pageNo}`;
     }
-    fetchFun(API_URL);
+    else if(movieName=="top_rated"){
+      API_URL = BASE_URL + "/tv/top_rated?" + API_KEY + `&page=${pageNo}`;
+    }
+    else {
+      API_URL =
+        BASE_URL + "/search/tv?" + API_KEY + `&query=${movieN}&page=${pageNo}`;
+    }
+
+    fetchFun(API_URL); 
   };
+
+
 
   const nextBtn = () => {
     pageNo = page + 1;
@@ -48,33 +61,34 @@ const Upcoming = (props) => {
   };
 
   const search = () => {
-    API_URL = BASE_URL + "/search/tv?" + API_KEY + `&query=${movieN}`;
-    setCurrentDisplay(movieN);
+    API_URL = BASE_URL + "/search/tv?" + API_KEY + `&query=${movieN?movieN:movieName}`;
+    setCurrentDisplay(movieN?movieN:movieName);
+    navigate('/tv/' + (movieN?movieN:movieName))
     fetchFun(API_URL);
   };
 
-  useEffect(() => {
-    API_URL = BASE_URL + "/tv/popular?" + API_KEY + `&page=1`;
-    fetchFun(API_URL);
-  }, []);
+  // useEffect(() => {
+  //   API_URL = BASE_URL + "/tv/popular?" + API_KEY + `&page=1`;
+  //   fetchFun(API_URL);
+  // }, []);
 
   const nowPlaying = () => {
     API_URL = BASE_URL + "/tv/airing_today?" + API_KEY + `&page=1`;
-    let now = 1;
     setCurrentDisplay("Now Playing");
-    fetchFun(API_URL, now);
+    navigate('/tv' + "/airing_today")
+    fetchFun(API_URL);
   };
   const popular = () => {
     API_URL = BASE_URL + "/tv/popular?" + API_KEY + `&page=1`;
-    let now = 3;
     setCurrentDisplay("Popular");
-    fetchFun(API_URL, now);
+    navigate('/tv' + "/popular")
+    fetchFun(API_URL);
   };
   const topRated = () => {
     API_URL = BASE_URL + "/tv/top_rated?" + API_KEY + `&page=1`;
-    let now = 4;
     setCurrentDisplay("Top Rated");
-    fetchFun(API_URL, now);
+    navigate('/tv' + "/top_rated")
+    fetchFun(API_URL);
   };
 
   const onchange = (e) => {
@@ -82,6 +96,20 @@ const Upcoming = (props) => {
     setMovien(e.target.value);
   };
  
+  useEffect(() => {
+    if (movieName == "airing_today") {
+      nowPlaying();
+    }
+    else if(movieName=="popular"){
+       popular();
+    }
+    else if(movieName=="top_rated"){
+      topRated();
+    }
+    else {
+      search();
+    }
+  }, [movieName])
  
 
   return (
