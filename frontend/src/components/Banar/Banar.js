@@ -8,7 +8,7 @@ const Banar = (props) => {
   const [data, setData] = useState([]);
   useEffect(() => {
     setData(movie);
-  }, [movie]);
+  },[movie]);
 
   const length = data.slice(0, 3).length
 

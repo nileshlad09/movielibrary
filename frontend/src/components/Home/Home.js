@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import MovieItem from '../Movie/MovieItem';
+import { Link } from 'react-router-dom';
 import Banar from '../Banar/Banar';
 import './home.css'
 const API_KEY = "api_key=caa67a8e6595552254dc5543bf0720a7";
@@ -90,7 +91,7 @@ const Home = () => {
       <div className="homeSection-1">
         <div className='homeDeatil'>
           <h3>Now playing</h3>
-          <p>See All</p>
+          <p><Link to="/movie/now_playing">See All</Link></p>
         </div>
         <div className="Now-playing">
           {movieNP.length > 0 &&
@@ -109,7 +110,7 @@ const Home = () => {
       <div className="homeSection-1">
         <div className='homeDeatil'>
           <h3>Upcoming</h3>
-          <p>See All</p>
+          <p> <Link to="/movie/upcoming">See All</Link></p>
         </div>
         <div className="Now-playing">
           {movieUC.length > 0 &&
@@ -128,7 +129,7 @@ const Home = () => {
       <div className="homeSection-1">
         <div className='homeDeatil'>
           <h3>Top Rated</h3>
-          <p>See All</p>
+          <p><Link to="/movie/top_rated">See All</Link></p>
         </div>
         <div className="Now-playing">
           {movieTR.length > 0 &&
@@ -146,27 +147,8 @@ const Home = () => {
       </div>
       <div className="homeSection-1">
         <div className='homeDeatil'>
-          <h3>Airing Today</h3>
-          <p>See All</p>
-        </div>
-        <div className="Now-playing">
-          {tvNP.length > 0 &&
-            tvNP.map((movie, index) => {
-              return (
-                index <= 9 ?
-                  <MovieItem
-                    key={movie.id}
-                    movie={movie}
-                  /> : ""
-              )
-            })
-          }
-        </div>
-      </div>
-      <div className="homeSection-1">
-        <div className='homeDeatil'>
           <h3>Top Rated Tv show</h3>
-          <p>See All</p>
+          <p><Link to="/tv/top_rated">See All</Link></p>
         </div>
         <div className="Now-playing">
           {tvTR.length > 0 &&
@@ -182,6 +164,26 @@ const Home = () => {
           }
         </div>
       </div>
+      <div className="homeSection-1">
+        <div className='homeDeatil'>
+          <h3>Airing Today</h3>
+          <p><Link to="/tv/airing_today">See All</Link></p>
+        </div>
+        <div className="Now-playing">
+          {tvNP.length > 0 &&
+            tvNP.map((movie, index) => {
+              return (
+                index <= 9 ?
+                  <MovieItem
+                    key={movie.id}
+                    movie={movie}
+                  /> : ""
+              )
+            })
+          }
+        </div>
+      </div>
+     
     </div>
   )
 }

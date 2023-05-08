@@ -26,7 +26,6 @@ const MovieItem = (props) => {
       return "red";
     }
   };
-  console.log(movie);
   return (
     <>
       <div className="movie" key={movie.id}>
