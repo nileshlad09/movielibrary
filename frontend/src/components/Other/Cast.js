@@ -1,11 +1,13 @@
 import React, { useState, useEffect } from "react";
 import CastDetail from "./CastDetail";
 
-const API_KEY = "api_key=caa67a8e6595552254dc5543bf0720a7";
-const BASE_URL = "https://api.themoviedb.org/3";
-const IMG_URL = "https://image.tmdb.org/t/p/w500";
+
+
 
 const Cast = (props) => {
+  const IMG_URL = process.env.REACT_APP_IMG_URL;
+  const API_KEY = process.env.REACT_APP_API_KEY;
+  const BASE_URL = process.env.REACT_APP_BASE_URL;
   const [cast, setCast] = useState([]);
   const API_URL = BASE_URL + `/${props.type}/${props.movieid}/credits?` + API_KEY;
   useEffect(() => {

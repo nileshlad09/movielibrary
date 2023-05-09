@@ -1,10 +1,11 @@
 import React ,{useState,useEffect} from 'react'
 
-const API_KEY = "api_key=caa67a8e6595552254dc5543bf0720a7";
-const BASE_URL = "https://api.themoviedb.org/3";
-const IMG_URL = "https://image.tmdb.org/t/p/w500";
+
 
 const Wheretowatch = (params) => {
+    const IMG_URL = process.env.REACT_APP_IMG_URL;
+    const API_KEY = process.env.REACT_APP_API_KEY;
+  const BASE_URL = process.env.REACT_APP_BASE_URL;
    const {movieid,type}=params;
 
     const [providers, setProvider] = useState([]);

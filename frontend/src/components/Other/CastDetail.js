@@ -1,7 +1,8 @@
 import React from "react";
 import img from '../../Img/person.jpg'
-const IMG_URL = "https://image.tmdb.org/t/p/w500";
+
 const CastDetail = (props) => {
+  const IMG_URL = process.env.REACT_APP_IMG_URL;
   const { data } = props;
   return (
     <div className="castImg">

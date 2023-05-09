@@ -3,10 +3,10 @@ import MovieItem from '../Movie/MovieItem';
 import { Link } from 'react-router-dom';
 import Banar from '../Banar/Banar';
 import './home.css'
-const API_KEY = "api_key=caa67a8e6595552254dc5543bf0720a7";
-const BASE_URL = "https://api.themoviedb.org/3";
-const Home = () => {
 
+const Home = () => {
+  const API_KEY = process.env.REACT_APP_API_KEY;
+  const BASE_URL = process.env.REACT_APP_BASE_URL;
   let API_URL;
   let number;
   const [movieNP, setMovieNP] = useState([]);

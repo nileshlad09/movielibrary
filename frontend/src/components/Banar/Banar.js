@@ -1,8 +1,8 @@
 import React, { useEffect, useState } from 'react';
 import './banar.css'
-const IMG_URL = "https://image.tmdb.org/t/p/w500";
 const Banar = (props) => {
-
+  
+  const IMG_URL = process.env.REACT_APP_IMG_URL;
   const { movie } = props;
   const [current, setCurrent] = useState(0);
   const [data, setData] = useState([]);

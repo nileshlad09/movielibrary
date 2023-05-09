@@ -7,12 +7,13 @@ import './detailofmovie.css'
 import Trailer from "../Other/Trailer";
 import Wheretowatch from "../Other/Wheretowatch";
 import Overview from "../Other/Overview";
-const API_KEY = "api_key=caa67a8e6595552254dc5543bf0720a7";
-const BASE_URL = "https://api.themoviedb.org/3";
-const IMG_URL = "https://image.tmdb.org/t/p/w500";
+
 
 
 const DetailOfMovie = () => {
+  const IMG_URL = process.env.REACT_APP_IMG_URL;
+  const API_KEY = process.env.REACT_APP_API_KEY;
+  const BASE_URL = process.env.REACT_APP_BASE_URL;
   const params = useParams();
   const movieid = params.id;
   const type = params.type;
@@ -36,7 +37,6 @@ const DetailOfMovie = () => {
       .then((res) => res.json())
       .then((data) => {
         setMovie(data);
-        console.log(data)
         if(data.seasons){
           setColl(data.seasons)
         }
@@ -44,7 +44,6 @@ const DetailOfMovie = () => {
           fetch(BASE_URL + `/collection/${data?.belongs_to_collection?.id}?` + API_KEY)
             .then((res) => res.json())
             .then((data) => {
-              console.log(data);
               setColl(data.parts);
             });
         }
@@ -69,7 +68,6 @@ const DetailOfMovie = () => {
     
 
   }, []);
-console.log(coll)
 
   return (
     <>

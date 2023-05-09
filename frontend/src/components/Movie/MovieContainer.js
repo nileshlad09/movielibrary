@@ -2,12 +2,12 @@ import React, { useEffect, useState } from "react";
 import Banar from "../Banar/Banar";
 import MovieItem from "./MovieItem";
 import { useNavigate, useParams } from "react-router-dom";
-const API_KEY = "api_key=caa67a8e6595552254dc5543bf0720a7";
-const BASE_URL = "https://api.themoviedb.org/3";
+
 
 const MovieContainer = (props) => {
   let navigate = useNavigate();
-
+  const API_KEY = process.env.REACT_APP_API_KEY;
+  const BASE_URL = process.env.REACT_APP_BASE_URL;
   const params = useParams();
   const movieName = params.type;
 

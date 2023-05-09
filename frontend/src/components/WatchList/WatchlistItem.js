@@ -2,15 +2,15 @@ import React, { useEffect, useState,useContext } from "react";
 import WatchlistContext from './../../context/watchlist/WatchlistContext'
 import image from '../../Img/download.jpg'
 import { useNavigate } from "react-router-dom";
-const API_KEY = "api_key=caa67a8e6595552254dc5543bf0720a7";
-const BASE_URL = "https://api.themoviedb.org/3";
-const IMG_URL = "https://image.tmdb.org/t/p/w500";
+
 
 
 const WatchlistItem = (props) => {
+  const IMG_URL = process.env.REACT_APP_IMG_URL;
+  const API_KEY = process.env.REACT_APP_API_KEY;
+  const BASE_URL = process.env.REACT_APP_BASE_URL;
   const navigate = useNavigate()
   const {movie,showAlert}=props;
-  console.log(movie);
   
   let  API_URL = BASE_URL + `/${movie.typeOfContent}/${movie.movieId}?` + API_KEY;
     
@@ -20,7 +20,6 @@ const WatchlistItem = (props) => {
       .then((res) => res.json())
       .then((data) => {
         setMovie(data);
-        console.log(data);
       });
   },[]);
 

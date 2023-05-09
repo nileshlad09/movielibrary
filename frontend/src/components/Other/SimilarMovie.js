@@ -1,12 +1,12 @@
 import React from 'react'
 
 import image from "../../Img/download.jpg";
-const IMG_URL = "https://image.tmdb.org/t/p/w500";
+
 
 
 const SimilarMovie = (props) => {
+  const IMG_URL = process.env.REACT_APP_IMG_URL;
   const {coll}=props;
-  console.log(coll)
   return (
     <div style={{display:(coll.length==0)?"none":"block"}} key={coll.id}>
              <h2>Similar movies</h2>

@@ -9,11 +9,9 @@ const WatchList = (props) => {
 
   useEffect(() => {
     getWatchlistM();
-    console.log(watchlist);
   }, []);
   useEffect(()=>{
     getWatchlistS();
-    console.log(watchlistS);
   },[])
 
   return (

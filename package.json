@@ -1,5 +1,6 @@
 {
   "dependencies": {
+    "dotenv": "^16.0.3",
     "react-slideshow-image": "^4.2.1"
   }
 }

@@ -32,6 +32,11 @@
     margin: 0;
     padding: 0;
     cursor: pointer;
+    color: white;
+}
+.homeDeatil p a{
+    color: white;
+    text-decoration: none;
 }
 
 @media screen and (max-width:500px) {

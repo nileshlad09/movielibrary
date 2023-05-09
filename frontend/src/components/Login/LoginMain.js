@@ -15,7 +15,6 @@ const LoginMain = (props) => {
       body: JSON.stringify({ email: crediantial.email, password: crediantial.password })
     });
     const json = await response.json()
-    console.log(json);
     if (json.success) {
       localStorage.setItem('token2', json.authToken);
       showAlert("success", "login successfull")

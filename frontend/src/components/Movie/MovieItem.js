@@ -3,9 +3,9 @@ import './movie.css'
 import image from "../../Img/download.jpg";
 import WatchlistContext from "../../context/watchlist/WatchlistContext";
 import { useNavigate, Link } from "react-router-dom";
-const IMG_URL = "https://image.tmdb.org/t/p/w500";
 
 const MovieItem = (props) => {
+  const IMG_URL = process.env.REACT_APP_IMG_URL;
   let navigate = useNavigate();
   const { movie, showAlert } = props;
   const context = useContext(WatchlistContext);
@@ -33,7 +33,6 @@ const MovieItem = (props) => {
           src={movie.poster_path ? IMG_URL + movie.poster_path : image}
           onClick={() => {
             localStorage.setItem("movieId", movie.id);
-            console.log(movie.id)
             navigate( (movie.title?"/movie":"/tv")+"/knowmore/" + movie.id);
           }}
         />
