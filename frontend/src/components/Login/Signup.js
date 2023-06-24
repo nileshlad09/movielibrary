@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { useNavigate,Link } from "react-router-dom";
-
+import { UserContext } from "../../App";
+import { useContext } from "react";
 
 const Signup = (props) => {
   const [crediantial, setCrediantial] = useState({ name: "", email: "", password: "" });
@@ -8,7 +9,7 @@ const Signup = (props) => {
   const { showAlert,setLogin } = props;
   const handleclick = async (e) => {
     e.preventDefault();
-    const response = await fetch(`http://localhost:5000/api/auth/createuser`, {
+    const response = await fetch(`http://localhost:7000/api/auth/createuser`, {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json'
@@ -16,7 +17,9 @@ const Signup = (props) => {
       body: JSON.stringify({ name: crediantial.name, email: crediantial.email, password: crediantial.password })
     });
     const json = await response.json()
+    console.log(json);
     if (json.success) {
+      dispatch({type:"USER",payload:true});
       localStorage.setItem('token2', json.authToken);
       showAlert("success", "account created successfull")
       navigate('/')
@@ -24,7 +27,7 @@ const Signup = (props) => {
       showAlert("danger", "Invalid Email")
     }
   }
-
+  const {state,dispatch} = useContext(UserContext)
   const onChange = (e) => {
     setCrediantial({ ...crediantial, [e.target.name]: e.target.value });
   }

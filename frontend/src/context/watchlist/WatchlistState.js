@@ -3,7 +3,7 @@ import WatchlistContext from "./WatchlistContext";
 
 const WatchlistState = (props)=>{
 
-    const host ="http://localhost:5000"
+    const host =process.env.REACT_APP_HOST || "http://localhost:7000";
     const noteInitial = []
     const [watchlist ,setWatchlist]= useState(noteInitial)
     const [watchlistS ,setWatchlistS]= useState(noteInitial)
@@ -90,6 +90,7 @@ const WatchlistState = (props)=>{
 
 
       const addReview= async (review)=>{
+        console.log(review);
         const response = await fetch(`${host}/api/review/addreview`, {
           method: 'POST', 
           headers: {

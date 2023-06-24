@@ -15,7 +15,7 @@
     "express": "^4.18.1",
     "express-validator": "^6.14.2",
     "jsonwebtoken": "^8.5.1",
-    "mongoose": "^6.4.2",
+    "mongoose": "^6.11.2",
     "nodemon": "^2.0.18",
     "router": "^1.3.7"
   }

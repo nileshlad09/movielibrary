@@ -7,7 +7,7 @@ const ReviewItem = (props) => {
     <div className="card m-2">
     <div className="card-body ">
     <div className="reviewCon">
-      <h4 className="card-title"><i className="fas fa-user"></i> {note.name}</h4>
+      <h5 className="card-title"><i className="fas fa-user"></i> {note.name}</h5>
       <p className="card-text">{note.review}</p>
       </div>
     </div>

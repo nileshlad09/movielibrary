@@ -1,13 +1,14 @@
-import React,{useState} from 'react'
+import React,{useState, useContext} from 'react'
 import { useNavigate} from "react-router-dom";
-
+import { UserContext } from '../../App';
 const LoginMain = (props) => {
-    const [crediantial, setCrediantial] = useState({ email: "", password: "" });
+  const [crediantial, setCrediantial] = useState({ email: "", password: "" });
   const navigate = useNavigate();
   const { showAlert,setLogin } = props;
+
   const handleclick = async (e) => {
     e.preventDefault();
-    const response = await fetch(`http://localhost:5000/api/auth/login`, {
+    const response = await fetch(`http://localhost:7000/api/auth/login`, {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json'
@@ -16,13 +17,19 @@ const LoginMain = (props) => {
     });
     const json = await response.json()
     if (json.success) {
+      dispatch({type:"USER",payload:true});
       localStorage.setItem('token2', json.authToken);
       showAlert("success", "login successfull")
+
+      navigate("/")
     }
     else {
       showAlert("danger", "invalid credentials")
     }
   }
+
+
+  const {state,dispatch} = useContext(UserContext)
 
   const onChange = (e) => {
     setCrediantial({ ...crediantial, [e.target.name]: e.target.value });

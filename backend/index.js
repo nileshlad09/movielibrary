@@ -6,7 +6,7 @@ const app = express();
 app.use(cors())
 app.use(express.json())
 
-const PORT = 5000
+const PORT = 7000
 app.use('/api/watchlist',require('./routes/watchlists'))
 app.use('/api/watched',require('./routes/watched'))
 app.use('/api/auth',require('./routes/auth'))

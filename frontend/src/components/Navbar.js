@@ -1,14 +1,18 @@
 import React from "react";
 import { Link, useLocation } from "react-router-dom";
 import './navbar.css'
-
+import { useContext } from "react";
+import { UserContext } from "../App";
 const Navbar = () => {
   const location = useLocation();
 
 
+  const {state,dispatch} = useContext(UserContext)
   const logout = () => {
     localStorage.clear("token2");
+    dispatch({type:"USER",payload:false});
   };
+
 
 
   return (
@@ -53,20 +57,19 @@ const Navbar = () => {
                   Tv Shows
                 </Link>
               </li>
-              <li className="nav-item">
-                <Link
-                  style={{
-                    pointerEvents: localStorage.getItem("token2") ? 0 : "none",
-                  }}
-                  className={`nav-link ${
-                    location.pathname === "/watchlist" ? "active" : ""
-                  }`}
-                  aria-current="page"
-                  to="/watchlist"
-                >
-                  WatchList
-                </Link>
-                </li>
+             {state?
+             <li className="nav-item">
+             <Link
+               className={`nav-link ${
+                 location.pathname === "/watchlist" ? "active" : ""
+               }`}
+               aria-current="page"
+               to="/watchlist"
+             >
+               WatchList
+             </Link>
+             </li>:<></>
+             } 
             </ul>
             {!localStorage.getItem("token2") ? (
               <form className="d-flex">

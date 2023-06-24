@@ -11,7 +11,7 @@ const Login = (props) => {
   const API_KEY = process.env.REACT_APP_API_KEY;
   const BASE_URL = process.env.REACT_APP_BASE_URL;
 
-  
+  const {showAlert} = props;
 
   const [movie, setMovie] = useState([]);
   const fetchFun = async (API_URL) => {
@@ -35,9 +35,11 @@ const Login = (props) => {
     setCurrent(current === length - 1 ? 0 : current + 1);
   };
 
-  // setTimeout(()=>{
-  //   nextSlide();
-  // },5000)
+  setInterval(()=>{
+       nextSlide();
+  },6000)
+
+  
 
   const [islogin,setLogin] = useState(true);
 
@@ -66,8 +68,8 @@ const Login = (props) => {
         </div>
         <div className="col-md-6">
           {islogin ?
-           <LoginMain setLogin={setLogin}/> :
-          <Signup setLogin={setLogin}/>
+           <LoginMain setLogin={setLogin} showAlert={showAlert}/> :
+          <Signup setLogin={setLogin} showAlert={showAlert}/>
           }
           
         </div>

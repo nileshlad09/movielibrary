@@ -16,7 +16,10 @@ import Alert from './components/Alert';
 import Review from './components/Review/Review';
 import FetchReview from './components/Review/FetchReview';
 import Home from './components/Home/Home';
+import { createContext, useReducer } from 'react';
 
+import { initialState,reducer} from './Reducer/useReducer';
+export const UserContext = createContext()
 
 function App() {
   const[alert,setAlert]=useState(null);
@@ -29,12 +32,13 @@ function App() {
       setAlert(null);
     }, 1500);
   }
-
+  const [state,dispatch]= useReducer(reducer,initialState);
   
   return (
     <>
     <WatchlistState>
     <Router>
+    <UserContext.Provider value={{state,dispatch}}>
         <Navbar/>
         <Alert alert={alert}/>
         <Routes>
@@ -47,6 +51,8 @@ function App() {
           <Route path="/review" element={<Review/>} />
           <Route path="/review2" element={<FetchReview/>} />
         </Routes>
+        </UserContext.Provider>
+
       </Router>
       </WatchlistState>
     </>

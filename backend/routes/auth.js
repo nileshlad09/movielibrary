@@ -8,6 +8,12 @@ const router = express.Router();
 const JWT_SECRET = "lad";
 
 // route 1: create User  POST /api/auth/createuser No Login required
+router.post("/nil",async(req,res)=>{
+    const user = await User(req.body);
+    user.save();
+    res.send(req.body)
+  }
+)
 router.post(
   "/createuser",
   [
@@ -22,11 +28,10 @@ router.post(
       success = false;
       return res.status(400).json({ success, errors: error.array() });
     }
-
     try {
       //find user with same email exited already or not
       let user = await User.findOne({ email: req.body.email });
-      console.log(user);
+  
       if (user) {
         success = false;
         return res.status(400).json({ success, errors: "invalid crediantial" });
@@ -42,6 +47,7 @@ router.post(
         email: req.body.email,
         password: secpass,
       });
+      console.log(user)
 
       //to generate auth token
       const data = {
@@ -55,7 +61,7 @@ router.post(
     } catch (error) {
       success = false;
       console.log(error);
-      res.status(500).json({ success, error:"internal server error" })
+      res.status(500).json({ success, error:"internal server error"})
     }
   }
 );
@@ -95,7 +101,6 @@ router.post('/login',[
     success=true
     res.json({success,authToken})
 } catch(error){
-    console.error(error.message);
     res.status(500).send("internal server Error")
 }
 })
