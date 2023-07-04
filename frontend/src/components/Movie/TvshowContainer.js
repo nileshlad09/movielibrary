@@ -2,6 +2,7 @@ import React, { useEffect, useState} from "react";
 import Banar from "../Banar/Banar";
 import { useNavigate, useParams } from "react-router-dom";
 import MovieItem from "./MovieItem";
+import Loader from "../Loader/Loader";
 
 const Upcoming = (props) => {
   const API_KEY = process.env.REACT_APP_API_KEY;
@@ -15,16 +16,21 @@ const Upcoming = (props) => {
   const [movieN, setMovien] = useState("");
   const [currentDisplay, setCurrentDisplay] = useState("Airing Today");
   const { showAlert } = props;
+  const [isLoading, setLoading]=useState(true);
   let pageNo = 1;
   let API_URL;
 
   const fetchFun = async (API_URL) => {
+    setLoading(true);
     await fetch(API_URL)
       .then((res) => res.json())
       .then((data) => {
         setMovie(data.results);
         setTotalpage(data.total_pages);
         setPage(data.page);
+        setTimeout(()=>{
+          setLoading(false);
+        },[500])
       });
   };
 
@@ -108,7 +114,7 @@ const Upcoming = (props) => {
  
 
   return (
-    <>
+    <>{isLoading? <Loader/> :
       <div className="main">
         <div className="nav2 container">
           <div className="row">
@@ -190,6 +196,7 @@ const Upcoming = (props) => {
           </button>
         </div>
       </div>
+      }
     </>
   );
 };

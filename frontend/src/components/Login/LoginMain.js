@@ -1,11 +1,11 @@
-import React,{useState, useContext} from 'react'
+import React,{useState, useContext} from 'react';
 import { useNavigate} from "react-router-dom";
 import { UserContext } from '../../App';
+
 const LoginMain = (props) => {
   const [crediantial, setCrediantial] = useState({ email: "", password: "" });
   const navigate = useNavigate();
   const { showAlert,setLogin } = props;
-
   const handleclick = async (e) => {
     e.preventDefault();
     const response = await fetch(`http://localhost:7000/api/auth/login`, {
@@ -20,7 +20,6 @@ const LoginMain = (props) => {
       dispatch({type:"USER",payload:true});
       localStorage.setItem('token2', json.authToken);
       showAlert("success", "login successfull")
-
       navigate("/")
     }
     else {
@@ -35,7 +34,8 @@ const LoginMain = (props) => {
     setCrediantial({ ...crediantial, [e.target.name]: e.target.value });
   }
   return (
-    <form  onSubmit={handleclick}>
+    
+         <form onSubmit={handleclick}>
             <div className="mb-3 ">
               <h2 className="text-center">Login</h2>
               <label htmlFor="email" className="form-label">

@@ -148,7 +148,9 @@
   /* ============similar movie area End============== */
   
   
-  
+  .close{
+    cursor: pointer;
+  }
 
   
   

@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import Banar from "../Banar/Banar";
 import MovieItem from "./MovieItem";
 import { useNavigate, useParams } from "react-router-dom";
+import Loader from "../Loader/Loader";
 
 
 const MovieContainer = (props) => {
@@ -20,16 +21,23 @@ const MovieContainer = (props) => {
   let pageNo = 1;
   let API_URL;
 
+const [isLoading, setLoading]=useState(true);
+
   const fetchFun = async (API_URL) => {
+    setLoading(true);
     await fetch(API_URL)
       .then((res) => res.json())
       .then((data) => {
         setMovie(data.results);
         setTotalpage(data.total_pages);
         setPage(data.page);
+        setTimeout(()=>{
+          setLoading(false);
+        },[500])
       });
   };
   const pageChange = async (pageNo) => {
+    setLoading(true);
     if (movieName == "now_playing") {
       API_URL = BASE_URL + "/movie/now_playing?" + API_KEY + `&page=${pageNo}`;
     }
@@ -49,7 +57,6 @@ const MovieContainer = (props) => {
       API_KEY +
       `&query=${movieName}&page=${pageNo}`;
     }
-
     fetchFun(API_URL); 
   };
 
@@ -70,6 +77,7 @@ const MovieContainer = (props) => {
     navigate('/movie' + "/now_playing")
     fetchFun(API_URL);
   };
+
   const Upcoming = () => {
     API_URL = BASE_URL + "/movie/upcoming?" + API_KEY + `&page=1`;
     setCurrentDisplay("Upcoming");
@@ -127,7 +135,8 @@ const MovieContainer = (props) => {
 
 
   return (
-    <>
+    <>{
+      isLoading?<Loader/>: 
       <div className="main">
         <div className="nav2 container">
           <div className="row">
@@ -213,6 +222,7 @@ const MovieContainer = (props) => {
           </button>
         </div>
       </div>
+    }
     </>
   );
 };

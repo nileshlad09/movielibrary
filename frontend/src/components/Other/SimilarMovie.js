@@ -1,19 +1,24 @@
 import React from 'react'
-
+import { useNavigate} from "react-router-dom";
 import image from "../../Img/download.jpg";
 
 
 
 const SimilarMovie = (props) => {
   const IMG_URL = process.env.REACT_APP_IMG_URL;
+  let navigate = useNavigate();
   const {coll}=props;
   return (
     <div style={{display:(coll.length==0)?"none":"block"}} key={coll.id}>
              <h2>Similar movies</h2>
              <div className='similar_movie'>
          {coll.map((movie)=>{
-            return( <div className="card" key={movie.id} >
-              <img src={movie.poster_path? (IMG_URL+movie.poster_path): image} className="card-img-top"/>
+            return( <div className="card" key={movie.id} onClick={() => {
+              localStorage.setItem("movieId", movie.id);
+              navigate( (movie.title?"/movie":"/tv")+"/knowmore/" + movie.id);
+            }} >
+              <img src={movie.poster_path? (IMG_URL+movie.poster_path): image} 
+              className="card-img-top"/>
                     <div className="card-body">
                         {(movie.original_title===movie.title)?
                         <p className="card-text">{movie.title?movie.title:movie.name}</p>:

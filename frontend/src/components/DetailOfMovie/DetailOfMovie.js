@@ -7,6 +7,7 @@ import './detailofmovie.css'
 import Trailer from "../Other/Trailer";
 import Wheretowatch from "../Other/Wheretowatch";
 import Overview from "../Other/Overview";
+import Loader from "../Loader/Loader";
 
 
 
@@ -25,6 +26,9 @@ const DetailOfMovie = () => {
   
   const [coll, setColl] = useState([]);
   let Navigate = useNavigate();
+
+  const [isLoading, setLoading]=useState(true);
+
   const close = () => {
     Navigate(-1);
   };
@@ -33,10 +37,12 @@ const DetailOfMovie = () => {
 
   useEffect(() => {
     //moviedata
+    setLoading(true);
     fetch(API_URL)
       .then((res) => res.json())
       .then((data) => {
         setMovie(data);
+        setLoading(false);
         if(data.seasons){
           setColl(data.seasons)
         }
@@ -65,17 +71,14 @@ const DetailOfMovie = () => {
         });
       });
 
-    
-
-  }, []);
+  }, [movieid]);
 
   return (
     <>
+    {isLoading? <Loader/>:
       <div className="detailofmovie2" style={{ backgroundImage: `url(${IMG_URL + movies.backdrop_path})` }}>
         <div className=" detailofmovie" key={movieid}>
-          <button className="btn btn-primary float-end close" onClick={close}>
-            <i class="fa-solid fa-circle-xmark"></i>
-          </button>
+          <i class="fa-solid fa-circle-xmark close" onClick={close}></i>
           <h1 className="text-center overview-title">{movies.title?movies.title:movies.name}</h1>
           <p className="text-center">{movies.tagline}</p>
           <div className="row overview">
@@ -110,6 +113,7 @@ const DetailOfMovie = () => {
           </div>
         </div>
       </div>
+      }
     </>
   );
 };

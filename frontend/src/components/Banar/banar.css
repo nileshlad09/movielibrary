@@ -6,11 +6,17 @@
   align-items: center;
   margin: 10px auto;
 }
-
+/*  */
+.sideBanar{
+  /* background-color: red; */
+  width: 500px;
+  margin: 0 20px;
+}
 .image {
   width: 100%;
   border-radius: 10px;
   object-fit: cover;
+  cursor: pointer;
 }
 .slider h3 {
   position: absolute;
