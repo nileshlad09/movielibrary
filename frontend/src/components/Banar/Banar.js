@@ -42,19 +42,19 @@ const Banar = (props) => {
             >
               {index === current && (
                 <>
-                  <div className='sideBanar'>
+                  {/* <div className='sideBanar'>
                     <img src={IMG_URL + slide.poster_path} alt='Movie image' className='image' />
-                  </div>
+                  </div> */}
                   <img src={IMG_URL + slide.backdrop_path} alt='Movie image'
                   onClick={() => {
                     localStorage.setItem("movieId", slide.id);
                     navigate( (slide.title?"/movie":"/tv")+"/knowmore/" + slide.id);
                   }} className='image' />
-                  {/* <h3>{slide.title ? slide.title : slide.name}</h3> */}
+                  <h3>{slide.title ? slide.title : slide.name}</h3>
 
-                  <div className='sideBanar'>
+                  {/* <div className='sideBanar'>
                   <img src={IMG_URL + slide.poster_path} alt='Movie image' className='image' />
-                 </div>
+                 </div> */}
                 </>
               )}
               

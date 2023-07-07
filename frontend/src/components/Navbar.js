@@ -94,6 +94,10 @@ const Navbar = () => {
           </div>
         </div>
       </nav>
+      <div className="backendnote">
+        The backend isn't deployed yet. You can watch a demo here.
+        <a href="https://youtu.be/_E8cEW09Y38" target="_blank"> Link(Youtube)</a>
+      </div>
     </div>
   );
 };
