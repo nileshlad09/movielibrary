@@ -49,20 +49,21 @@
     flex-direction: column;
   }
   
-  .movieContainer3 .tv .movieItems,
-  .movieContainer3 .movie3 .movieItems{
+  .movieContainer3 .tv .watchListmovieItems,
+  .movieContainer3 .movie3 .watchListmovieItems{
     display: flex;
     flex-wrap: wrap;
     justify-content: flex-start;
     margin-left: 60px;
   }
-  .movieContainer3 .tv .movieItems h4,
-  .movieContainer3 .movie3 .movieItems h4{
+  .movieContainer3 .tv .watchListmovieItems h4,
+  .movieContainer3 .movie3 .watchListmovieItems h4{
     color: white;
     padding-left: 20px;
   }
   
 
+ 
 
 
 
@@ -73,6 +74,7 @@
 
 .movie {
     width: 190px;
+    /* width: 690px; */
     margin: 0.6rem;
     position: relative;
     background-color: rgba(35, 35, 35, 0.899);
@@ -101,11 +103,7 @@
     background-color: rgba(0, 0, 0, 0.884);
 }
 
-.movie:hover .movie-info {
-    opacity: 1;
-    transition: opacity .9s;
-    cursor: pointer;
-}
+
 
 .movie-name h3 {
     font-family: "Ubuntu", sans-serif;
@@ -173,6 +171,26 @@
     color: orange;
 }
 
+.movie{
+    transition: transform .2s;
+}
+ .movieItemHome{
+    width: 250px;
+  }
+  .movie:hover{
+    -ms-transform: scale(1.2); 
+    -webkit-transform: scale(1.2); 
+    transform: scale(1.2); 
+    z-index: 100;
+    box-shadow: 0px 10px 30px rgba(245, 222, 179, 0.658);
+  }
+  
+  .movie:hover .movie-info {
+    opacity: 1;
+    transition: opacity .9s;
+    cursor: pointer;
+}  
+
 @media screen and (max-width:500px) {
     .movieSearch{
         display: none;
@@ -196,6 +214,9 @@
     .movie{
         width: 100px;
         margin: 0.4rem;
+    }
+    .movieItemHome{
+        width: 190px;
     }
     .movie img {
         border-radius: 10px;

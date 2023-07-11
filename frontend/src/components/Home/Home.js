@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import MovieItem from '../Movie/MovieItem';
+import MovieItemHome from '../Movie/MovieItemHome';
 import { Link } from 'react-router-dom';
 import Banar from '../Banar/Banar';
 import './home.css'
@@ -110,7 +111,7 @@ const Home = () => {
                   movieNP.map((movie, index) => {
                     return (
                       index <= 9 ?
-                        <MovieItem
+                        <MovieItemHome
                           key={movie.id}
                           movie={movie}
                         /> : ""
@@ -129,7 +130,7 @@ const Home = () => {
                   movieUC.map((movie, index) => {
                     return (
                       index <= 9 ?
-                        <MovieItem
+                        <MovieItemHome
                           key={movie.id}
                           movie={movie}
                         /> : ""
@@ -148,7 +149,7 @@ const Home = () => {
                   movieTR.map((movie, index) => {
                     return (
                       index <= 9 ?
-                        <MovieItem
+                        <MovieItemHome
                           key={movie.id}
                           movie={movie}
                         /> : ""
@@ -167,7 +168,7 @@ const Home = () => {
                   tvTR.map((movie, index) => {
                     return (
                       index <= 9 ?
-                        <MovieItem
+                        <MovieItemHome
                           key={movie.id}
                           movie={movie}
                         /> : ""
@@ -186,7 +187,7 @@ const Home = () => {
                   tvNP.map((movie, index) => {
                     return (
                       index <= 9 ?
-                        <MovieItem
+                        <MovieItemHome
                           key={movie.id}
                           movie={movie}
                         /> : ""

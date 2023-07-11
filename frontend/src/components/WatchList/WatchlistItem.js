@@ -41,7 +41,7 @@ const WatchlistItem = (props) => {
   
   return (
     <>
-      <div className="movie" key={movie.id}>
+      <div className="movie watchlistItem" key={movie.id}>
         <img
           src={movies.poster_path ? IMG_URL + movies.poster_path : image}
           onClick={() => {

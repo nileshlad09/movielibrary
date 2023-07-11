@@ -21,7 +21,7 @@ const WatchList = (props) => {
         <div className="title">
         <h1>Movie</h1>
         </div>
-        <div className="movieItems">
+        <div className="watchListmovieItems">
         {  watchlist.map((movie) => {
           
           return (
@@ -43,7 +43,7 @@ const WatchList = (props) => {
         <div className="title">
         <h1>Tv Shows</h1>
         </div>
-        <div className="movieItems">
+        <div className="watchListmovieItems">
         {watchlistS.map((movie) => {
           return (
             <WatchlistItem

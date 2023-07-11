@@ -1,11 +1,10 @@
 import React, { useContext } from "react";
 import './movie.css'
-import image from "../../Img/download.jpg";
-import image2 from "../../Img/default1.jpg";
+import image2 from "../../Img/default3.jpg";
 import WatchlistContext from "../../context/watchlist/WatchlistContext";
 import { useNavigate, Link } from "react-router-dom";
 
-const MovieItem = (props) => {
+const MovieItemHome = (props) => {
   const IMG_URL = process.env.REACT_APP_IMG_URL;
   let navigate = useNavigate();
   const { movie, showAlert,home } = props;
@@ -28,14 +27,14 @@ const MovieItem = (props) => {
   };
   return (
     <>
-      <div className="movie movieItem" key={movie.id}>
+      <div className="movie movieItemHome" key={movie.id}>
         <img
-          src={movie.poster_path ? IMG_URL + movie.poster_path: image}
-          onClick={() => {
-            localStorage.setItem("movieId", movie.id);
-            navigate( (movie.title?"/movie":"/tv")+"/knowmore/" + movie.id);
-          }}
-        />
+        src={movie.backdrop_path ? IMG_URL + movie.backdrop_path: image2}
+        onClick={() => {
+          localStorage.setItem("movieId", movie.id);
+          navigate( (movie.title?"/movie":"/tv")+"/knowmore/" + movie.id);
+        }}
+      />   
         <div className="movie-info">
           <div className="movie_info">
             <div className="movie-name">
@@ -72,6 +71,6 @@ const MovieItem = (props) => {
       </div>
     </>
   );
-};
+}
 
-export default MovieItem;
+export default MovieItemHome

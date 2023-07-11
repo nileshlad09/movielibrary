@@ -28,12 +28,10 @@ const WatchlistState = (props)=>{
           }
         });
         const json = await response.json()
-        console.log(json);
         setWatchlistS(json)
       }
 
       const addWatchlist= async (movieId,movieName,typeOfContent)=>{
-        console.log(movieName,typeOfContent,movieId)
         const response = await fetch(`${host}/api/watchlist/addwatchlist`, {
           method: 'POST', 
           headers: {
@@ -43,7 +41,6 @@ const WatchlistState = (props)=>{
           body: JSON.stringify({movieId,movieName,typeOfContent})
         });
         const json = await response.json()
-        // console.log(json);
         setWatchlist(watchlist.concat(json))
         }
          
@@ -69,7 +66,6 @@ const WatchlistState = (props)=>{
           }
         });
         const json = await response.json()
-        console.log(id);
         const newmovie = watchlistS.filter((movie)=>{return movie._id!==id});
         setWatchlistS(newmovie)
       }
@@ -90,7 +86,6 @@ const WatchlistState = (props)=>{
 
 
       const addReview= async (review)=>{
-        console.log(review);
         const response = await fetch(`${host}/api/review/addreview`, {
           method: 'POST', 
           headers: {
